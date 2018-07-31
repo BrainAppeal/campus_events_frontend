@@ -1,0 +1,28 @@
+{
+    "name": "brainappeal/brain-event-frontend",
+    "type": "typo3-cms-extension",
+    "description": "Frontend plugins for Brain Events",
+    "authors": [
+        {
+            "name": "Gert Hammes",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "typo3/cms-core": "^8.7.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "BrainAppeal\\BrainEventFrontend\\": "Classes"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "BrainAppeal\\BrainEventFrontend\\Tests\\": "Tests"
+        }
+    },
+    "replace": {
+        "brain_event_frontend": "self.version",
+        "typo3-ter/brain-event-frontend": "self.version"
+    }
+}

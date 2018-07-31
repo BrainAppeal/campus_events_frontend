@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2018-07-31T14:46:11Z" product-name="brain_event_frontend">
+		<header/>
+		<body>
+			<trans-unit id="flexforms_tab.settings">
+				<source>Settings</source>
+			</trans-unit>
+			<trans-unit id="flexforms_general.mode">
+				<source>What to display</source>
+			</trans-unit>
+			<trans-unit id="flexforms_general.mode.list">
+				<source>Event list view</source>
+			</trans-unit>
+			<trans-unit id="flexforms_general.mode.detail">
+				<source>Stand-alone training detail view</source>
+			</trans-unit>
+			<trans-unit id="flexforms_general.externalListUrl">
+				<source>External URL for list view</source>
+			</trans-unit>
+			<trans-unit id="flexforms_general.templateLayout">
+				<source>Template Layout</source>
+			</trans-unit>
+			<trans-unit id="flexforms_general.detailPid">
+				<source>PageId for single training display</source>
+			</trans-unit>
+			<trans-unit id="flexforms_general.backPid">
+				<source>PageId to return to</source>
+			</trans-unit>
+			<trans-unit id="flexforms_general.storageEvent">
+				<source>Page(s) with training records</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

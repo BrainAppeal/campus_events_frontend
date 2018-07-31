@@ -1,0 +1,14 @@
+<html xmlns:f="https://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+	<f:layout name="Default" />
+
+	<f:section name="content">
+		<h2>{event.name}</h2>
+		<f:if condition="{event.subtitle}">
+			<h3 class="subtitle">{event.subtitle}</h3>
+		</f:if>
+
+		<f:format.html>{event.description}</f:format.html>
+
+		<p class="row-item-back"><f:link.action action="list" additionalAttributes="{'onclick': 'window.history.go(-1); return false;'}"><f:translate key="backToList" /></f:link.action></p>
+	</f:section>
+</html>

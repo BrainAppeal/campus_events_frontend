@@ -1,0 +1,51 @@
+<html xmlns:f="https://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:braine="https://typo3.org/ns/BrainAppeal/BrainEventFrontend/ViewHelpers"  data-namespace-typo3-fluid="true">
+{namespace braine=BrainAppeal\BrainEventFrontend\ViewHelpers}
+
+<div class="list-item event-list-item">
+    <div class="item-info-main">
+        <f:if condition="{event.categories}">
+            <div class="item-categories item-meta">
+                <f:for each="{event.categories}" as="category">
+                    <span class="category">{category.name}</span>
+                </f:for>
+            </div>
+        </f:if>
+        <h3 class="item-title" itemprop="headline">
+            <f:if condition="{event.url}">
+                <f:then>
+                    <a href="{event.url}" target="_blank">{event.name}</a>
+                </f:then>
+                <f:else>
+                    {event.name}
+                </f:else>
+            </f:if>
+        </h3>
+    </div>
+    <div class="item-info-extra item-meta">
+        <f:for each="{event.timeRanges}" as="timeRange" iteration="dateIterator">
+            <f:if condition="{dateIterator.isFirst}">
+                <div class="event-times">
+                    <div class="date has-fa-icon">
+                        <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                        <time datetime="{f:format.date(date:timeRange.startDate, format:'Y-m-d')}">
+                            <f:format.raw><braine:format.timespan timeRange="{timeRange}" format="%a, %d.%m.%Y" showTime="false" /></f:format.raw>
+                            <meta itemprop="datePublished" content="{f:format.date(date:timeRange.startDate, format:'Y-m-d')}" />
+                        </time>
+                    </div>
+                    <div class="time has-fa-icon">
+                        <i class="fa fa-clock-o" aria-hidden="true"></i>
+                        <f:format.raw><braine:format.timespan timeRange="{timeRange}" format="%d.%m.%Y" showDate="false" /></f:format.raw>
+                        <f:translate key="timeAppend" />
+                    </div>
+                </div>
+                <f:if condition="{event.location}">
+                    <div class="location has-fa-icon">
+                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                        {event.location.name}
+                    </div>
+                </f:if>
+            </f:if>
+        </f:for>
+    </div>
+</div>
+</html>
