@@ -60,6 +60,18 @@
                 </TCEforms>
             </settings.startingpoint>
 
+            <!-- Limit Start -->
+            <settings.limit>
+                <TCEforms>
+                    <label>LLL:EXT:brain_event_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_additional.limit</label>
+                    <config>
+                        <type>input</type>
+                        <size>5</size>
+                        <eval>num</eval>
+                    </config>
+                </TCEforms>
+            </settings.limit>
+
             <!-- Template Layout -->
             <settings.templateLayout>
                 <TCEforms>
@@ -67,7 +79,7 @@
                     <label>LLL:EXT:brain_event_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.templateLayout</label>
                     <config>
                         <type>select</type>
-                        <itemsProcFunc>BrainAppeal\BrainEventConnector\Hooks\ItemsProcFunc->user_templateLayout</itemsProcFunc>
+                        <itemsProcFunc>BrainAppeal\BrainEventFrontend\Hooks\ItemsProcFunc->user_templateLayout</itemsProcFunc>
                         <renderType>selectSingle</renderType>
                         <items>
                             <numIndex index="0" type="array">

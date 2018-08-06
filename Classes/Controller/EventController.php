@@ -47,7 +47,8 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     {
         $cObj = $this->configurationManager->getContentObject();
         $pidList = $this->settings['startingpoint'];
-        $events = $this->eventRepository->findAllByPid($pidList);
+        $limit = (int) $this->settings['limit'];
+        $events = $this->eventRepository->findListByPid($pidList, [], $limit);
         $this->view->assign('events', $events);
         $this->view->assign('contentData', $cObj->data);
     }
