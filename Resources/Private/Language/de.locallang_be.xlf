@@ -19,6 +19,18 @@
             <trans-unit id="flexforms_general.externalListUrl">
                 <target>Externe URL für Listenansicht</target>
             </trans-unit>
+            <trans-unit id="flexforms_general.timespan">
+                <target>Zeige Veranstaltungen aus folgendem Zeitraum an</target>
+            </trans-unit>
+            <trans-unit id="flexforms_general.timespan.all">
+                <target>Alle</target>
+            </trans-unit>
+            <trans-unit id="flexforms_general.timespan.past">
+                <target>Veranstaltungen aus der Vergangenheit</target>
+            </trans-unit>
+            <trans-unit id="flexforms_general.timespan.future">
+                <target>Veranstaltungen aus der Zukunft</target>
+            </trans-unit>
             <trans-unit id="flexforms_general.templateLayout" xml:space="preserve">
 				<target>Template Layout</target>
 			</trans-unit>

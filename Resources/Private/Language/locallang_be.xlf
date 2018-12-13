@@ -18,6 +18,18 @@
 			<trans-unit id="flexforms_general.externalListUrl">
 				<source>External URL for list view</source>
 			</trans-unit>
+			<trans-unit id="flexforms_general.timespan">
+				<source>Show Events from the following time span</source>
+			</trans-unit>
+			<trans-unit id="flexforms_general.timespan.all">
+				<source>All</source>
+			</trans-unit>
+			<trans-unit id="flexforms_general.timespan.past">
+				<source>Events from the past</source>
+			</trans-unit>
+			<trans-unit id="flexforms_general.timespan.future">
+				<source>Events from the future</source>
+			</trans-unit>
 			<trans-unit id="flexforms_general.templateLayout">
 				<source>Template Layout</source>
 			</trans-unit>

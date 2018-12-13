@@ -12,6 +12,7 @@ namespace BrainAppeal\BrainEventFrontend\Controller;
  *
  ***/
 
+use BrainAppeal\BrainEventConnector\Domain\Model\Event;
 use TYPO3\CMS\Extbase\Mvc\RequestInterface;
 use TYPO3\CMS\Extbase\Mvc\ResponseInterface;
 
@@ -48,7 +49,12 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $cObj = $this->configurationManager->getContentObject();
         $pidList = $this->settings['startingpoint'];
         $limit = (int) $this->settings['limit'];
-        $events = $this->eventRepository->findListByPid($pidList, [], $limit);
+        $timespan = $this->settings['timespan'];
+        $events = $this->eventRepository->findListByPid($pidList, []);
+        if ($timespan !== 'all') {
+            $events = $this->filterListAfterTimespan($events,$timespan);
+            $events = array_slice($events,0,$limit);
+        }
         $this->view->assign('events', $events);
         $this->view->assign('contentData', $cObj->data);
     }
@@ -93,6 +99,34 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      */
     public function showAction(\BrainAppeal\BrainEventConnector\Domain\Model\Event $event) {
         $this->view->assign('event', $event);
+    }
+
+    private function filterListAfterTimespan($events, $timespan) {
+        $currentDate = new \DateTime();
+        $newEventList = [];
+        $startDates = [];
+        foreach ($events as $eventKey => $event) {
+            /** @var Event $event */
+            $startDate = $event->getStartDate();
+            $endDate = $event->getEndDate();
+            if ($timespan === 'past') {
+                if ($startDate > $currentDate) {
+                    unset($events[$eventKey]);
+                } else {
+                    $newEventList[] = $event;
+                    $startDates[] = $startDate->getTimestamp();
+                }
+            } else if ($timespan === 'future') {
+                if ($endDate < $currentDate) {
+                    unset($events[$eventKey]);
+                } else {
+                    $newEventList[] = $event;
+                    $startDates[] = $startDate->getTimestamp();
+                }
+            }
+        }
+        array_multisort($startDates,$newEventList);
+        return $newEventList;
     }
 
     protected function getErrorFlashMessage()
