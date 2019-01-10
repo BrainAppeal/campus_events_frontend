@@ -94,39 +94,40 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      * action show
      *
      * @param \BrainAppeal\BrainEventConnector\Domain\Model\Event $event
-     * 
+     *
      * @return void
      */
     public function showAction(\BrainAppeal\BrainEventConnector\Domain\Model\Event $event) {
         $this->view->assign('event', $event);
     }
 
+    /**
+     * @param Event[] $events
+     * @param string $timespan
+     * @return Event[]
+     */
     private function filterListAfterTimespan($events, $timespan) {
         $currentDate = new \DateTime();
-        $newEventList = [];
-        $startDates = [];
+        $filteredEvents = [];
         foreach ($events as $eventKey => $event) {
-            /** @var Event $event */
             $startDate = $event->getStartDate();
             $endDate = $event->getEndDate();
             if ($timespan === 'past') {
-                if ($startDate > $currentDate) {
-                    unset($events[$eventKey]);
-                } else {
-                    $newEventList[] = $event;
-                    $startDates[] = $startDate->getTimestamp();
+                if ($startDate <= $currentDate) {
+                    $filteredEvents[] = $event;
                 }
             } else if ($timespan === 'future') {
-                if ($endDate < $currentDate) {
-                    unset($events[$eventKey]);
-                } else {
-                    $newEventList[] = $event;
-                    $startDates[] = $startDate->getTimestamp();
+                if ($endDate >= $currentDate) {
+                    $filteredEvents[] = $event;
                 }
             }
         }
-        array_multisort($startDates,$newEventList);
-        return $newEventList;
+        usort($filteredEvents, function ($eventA, $eventB) {
+           /** @var Event $eventA */
+           /** @var Event $eventB */
+           return $eventA->getStartDate() > $eventB->getStartDate();
+        });
+        return $filteredEvents;
     }
 
     protected function getErrorFlashMessage()
