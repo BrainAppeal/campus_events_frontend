@@ -1,9 +1,9 @@
 <?php
-namespace BrainAppeal\BrainEventFrontend\Controller;
+namespace BrainAppeal\CampusEventsFrontend\Controller;
 
 /***
  *
- * This file is part of the "ICF Stocks" Extension for TYPO3 CMS.
+ * This file is part of the "Campus Events frontend" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.

@@ -1,7 +1,7 @@
 {
-    "name": "brainappeal/brain-event-frontend",
+    "name": "brainappeal/campus-events-frontend",
     "type": "typo3-cms-extension",
-    "description": "Frontend plugins for Brain Events",
+    "description": "Frontend plugins for Campus Events",
     "authors": [
         {
             "name": "Gert Hammes",
@@ -13,16 +13,16 @@
     },
     "autoload": {
         "psr-4": {
-            "BrainAppeal\\BrainEventFrontend\\": "Classes"
+            "BrainAppeal\\CampusEventsFrontend\\": "Classes"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "BrainAppeal\\BrainEventFrontend\\Tests\\": "Tests"
+            "BrainAppeal\\CampusEventsFrontend\\Tests\\": "Tests"
         }
     },
     "replace": {
-        "brain_event_frontend": "self.version",
+        "campus_events_frontend": "self.version",
         "typo3-ter/brain-event-frontend": "self.version"
     }
 }

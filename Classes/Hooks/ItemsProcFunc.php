@@ -1,6 +1,6 @@
 <?php
 
-namespace BrainAppeal\BrainEventFrontend\Hooks;
+namespace BrainAppeal\CampusEventsFrontend\Hooks;
 
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
@@ -8,7 +8,7 @@ namespace BrainAppeal\BrainEventFrontend\Hooks;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
-use BrainAppeal\BrainEventFrontend\Utility\TemplateLayout;
+use BrainAppeal\CampusEventsFrontend\Utility\TemplateLayout;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\StringUtility;

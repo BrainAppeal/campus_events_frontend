@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2018-07-31T14:25:13Z" product-name="brain_event_frontend">
+	<file source-language="en" datatype="plaintext" original="messages" date="2018-07-31T14:25:13Z" product-name="campus_events_frontend">
 		<header/>
 		<body>
-			<trans-unit id="tx_brain_event_frontend_event.name">
+			<trans-unit id="tx_campus_events_frontend_event.name">
 				<source>Event</source>
 			</trans-unit>
-			<trans-unit id="tx_brain_event_frontend_event.description">
+			<trans-unit id="tx_campus_events_frontend_event.description">
 				<source>Event plugin</source>
 			</trans-unit>
 		</body>

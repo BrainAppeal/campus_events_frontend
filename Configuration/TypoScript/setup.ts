@@ -1,15 +1,15 @@
 
-plugin.tx_braineventfrontend_event {
+plugin.tx_campuseventsfrontend_event {
     view {
-        templateRootPaths.0 = EXT:brain_event_frontend/Resources/Private/Templates/
-        templateRootPaths.1 = {$plugin.tx_braineventfrontend_event.view.templateRootPath}
-        partialRootPaths.0 = EXT:brain_event_frontend/Resources/Private/Partials/
-        partialRootPaths.1 = {$plugin.tx_braineventfrontend_event.view.partialRootPath}
-        layoutRootPaths.0 = EXT:brain_event_frontend/Resources/Private/Layouts/
-        layoutRootPaths.1 = {$plugin.tx_braineventfrontend_event.view.layoutRootPath}
+        templateRootPaths.0 = EXT:campus_events_frontend/Resources/Private/Templates/
+        templateRootPaths.1 = {$plugin.tx_campuseventsfrontend_event.view.templateRootPath}
+        partialRootPaths.0 = EXT:campus_events_frontend/Resources/Private/Partials/
+        partialRootPaths.1 = {$plugin.tx_campuseventsfrontend_event.view.partialRootPath}
+        layoutRootPaths.0 = EXT:campus_events_frontend/Resources/Private/Layouts/
+        layoutRootPaths.1 = {$plugin.tx_campuseventsfrontend_event.view.layoutRootPath}
     }
     persistence {
-        storagePid = {$plugin.tx_braineventfrontend_event.persistence.storagePid}
+        storagePid = {$plugin.tx_campuseventsfrontend_event.persistence.storagePid}
         #recursive = 1
     }
     features {

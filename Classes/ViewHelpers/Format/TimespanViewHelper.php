@@ -24,7 +24,7 @@
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
-namespace BrainAppeal\BrainEventFrontend\ViewHelpers\Format;
+namespace BrainAppeal\CampusEventsFrontend\ViewHelpers\Format;
 
 use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
 USE BrainAppeal\BrainEventConnector\Domain\Model\TimeRange;

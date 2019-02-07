@@ -1,15 +1,15 @@
 
-plugin.tx_braineventfrontend_event {
+plugin.tx_campuseventsfrontend_event {
     view {
-        # cat=plugin.tx_braineventfrontend_event/file; type=string; label=Path to template root (FE)
-        templateRootPath = EXT:brain_event_frontend/Resources/Private/Templates/
-        # cat=plugin.tx_braineventfrontend_event/file; type=string; label=Path to template partials (FE)
-        partialRootPath = EXT:brain_event_frontend/Resources/Private/Partials/
-        # cat=plugin.tx_braineventfrontend_event/file; type=string; label=Path to template layouts (FE)
-        layoutRootPath = EXT:brain_event_frontend/Resources/Private/Layouts/
+        # cat=plugin.tx_campuseventsfrontend_event/file; type=string; label=Path to template root (FE)
+        templateRootPath = EXT:campus_events_frontend/Resources/Private/Templates/
+        # cat=plugin.tx_campuseventsfrontend_event/file; type=string; label=Path to template partials (FE)
+        partialRootPath = EXT:campus_events_frontend/Resources/Private/Partials/
+        # cat=plugin.tx_campuseventsfrontend_event/file; type=string; label=Path to template layouts (FE)
+        layoutRootPath = EXT:campus_events_frontend/Resources/Private/Layouts/
     }
     persistence {
-        # cat=plugin.tx_braineventfrontend_event//a; type=string; label=Default storage PID
+        # cat=plugin.tx_campuseventsfrontend_event//a; type=string; label=Default storage PID
         storagePid =
     }
     settings {

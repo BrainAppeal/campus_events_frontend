@@ -7,24 +7,24 @@
     </meta>
     <ROOT type="array">
         <TCEforms>
-            <sheetTitle>LLL:EXT:brain_event_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_tab.settings</sheetTitle>
+            <sheetTitle>LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_tab.settings</sheetTitle>
         </TCEforms>
         <type>array</type>
         <el>
             <switchableControllerActions>
                 <TCEforms>
-                    <label>LLL:EXT:brain_event_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.mode</label>
+                    <label>LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.mode</label>
                     <onChange>reload</onChange>
                     <config>
                         <type>select</type>
                         <renderType>selectSingle</renderType>
                         <items>
                             <numIndex index="1">
-                                <numIndex index="0">LLL:EXT:brain_event_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.mode.list</numIndex>
+                                <numIndex index="0">LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.mode.list</numIndex>
                                 <numIndex index="1">Event->list</numIndex>
                             </numIndex>
                             <numIndex index="2">
-                                <numIndex index="0">LLL:EXT:brain_event_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.mode.detail</numIndex>
+                                <numIndex index="0">LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.mode.detail</numIndex>
                                 <numIndex index="1">Event->detail</numIndex>
                             </numIndex>
                         </items>
@@ -35,7 +35,7 @@
             <settings.externalListUrl>
                 <TCEforms>
                     <displayCond>FIELD:switchableControllerActions:=:Event->list</displayCond>
-                    <label>LLL:EXT:brain_event_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.externalListUrl</label>
+                    <label>LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.externalListUrl</label>
                     <config>
                         <type>input</type>
                         <size>40</size>
@@ -48,7 +48,7 @@
             <settings.startingpoint>
                 <TCEforms>
                     <displayCond>FIELD:switchableControllerActions:=:Event->list</displayCond>
-                    <label>LLL:EXT:brain_event_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.storageEvent</label>
+                    <label>LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.storageEvent</label>
                     <config>
                         <type>group</type>
                         <internal_type>db</internal_type>
@@ -63,7 +63,7 @@
             <!-- Limit Start -->
             <settings.limit>
                 <TCEforms>
-                    <label>LLL:EXT:brain_event_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_additional.limit</label>
+                    <label>LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_additional.limit</label>
                     <config>
                         <type>input</type>
                         <size>5</size>
@@ -76,10 +76,10 @@
             <settings.templateLayout>
                 <TCEforms>
                     <displayCond>FIELD:switchableControllerActions:=:Event->list</displayCond>
-                    <label>LLL:EXT:brain_event_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.templateLayout</label>
+                    <label>LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.templateLayout</label>
                     <config>
                         <type>select</type>
-                        <itemsProcFunc>BrainAppeal\BrainEventFrontend\Hooks\ItemsProcFunc->user_templateLayout</itemsProcFunc>
+                        <itemsProcFunc>BrainAppeal\CampusEventsFrontend\Hooks\ItemsProcFunc->user_templateLayout</itemsProcFunc>
                         <renderType>selectSingle</renderType>
                         <items>
                             <numIndex index="0" type="array">

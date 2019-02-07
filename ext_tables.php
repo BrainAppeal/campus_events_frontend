@@ -5,7 +5,7 @@ call_user_func(
     function()
     {
 
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile('brain_event_frontend', 'Configuration/TypoScript', 'Brain Events Frontend');
+        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile('campus_events_frontend', 'Configuration/TypoScript', 'Campus Events Frontend');
 
     }
 );

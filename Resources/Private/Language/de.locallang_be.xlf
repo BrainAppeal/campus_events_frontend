@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
     <file target-language="de" datatype="plaintext" original="messages" date="2018-07-31T14:48:23Z"
-          product-name="brain_event_frontend">
+          product-name="campus_events_frontend">
         <header/>
         <body>
             <trans-unit id="flexforms_tab.settings" xml:space="preserve">

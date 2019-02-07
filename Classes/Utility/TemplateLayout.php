@@ -1,6 +1,6 @@
 <?php
 
-namespace BrainAppeal\BrainEventFrontend\Utility;
+namespace BrainAppeal\CampusEventsFrontend\Utility;
 
 /**
  * This file is part of the "news" Extension for TYPO3 CMS.
@@ -29,10 +29,10 @@ class TemplateLayout implements SingletonInterface
         $templateLayouts = [];
 
         // Check if the layouts are extended by ext_tables
-        if (isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['brain_event_frontend']['templateLayouts'])
-            && is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['brain_event_frontend']['templateLayouts'])
+        if (isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['campus_events_frontend']['templateLayouts'])
+            && is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['campus_events_frontend']['templateLayouts'])
         ) {
-            $templateLayouts = $GLOBALS['TYPO3_CONF_VARS']['EXT']['brain_event_frontend']['templateLayouts'];
+            $templateLayouts = $GLOBALS['TYPO3_CONF_VARS']['EXT']['campus_events_frontend']['templateLayouts'];
         }
 
         // Add TsConfig values
