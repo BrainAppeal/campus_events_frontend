@@ -12,7 +12,7 @@ namespace BrainAppeal\CampusEventsFrontend\Controller;
  *
  ***/
 
-use BrainAppeal\BrainEventConnector\Domain\Model\Event;
+use BrainAppeal\CampusEventsConnector\Domain\Model\Event;
 use TYPO3\CMS\Extbase\Mvc\RequestInterface;
 use TYPO3\CMS\Extbase\Mvc\ResponseInterface;
 
@@ -24,16 +24,16 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     /**
      * event repository
      *
-     * @var \BrainAppeal\BrainEventConnector\Domain\Repository\EventRepository
+     * @var \BrainAppeal\CampusEventsConnector\Domain\Repository\EventRepository
      */
     protected $eventRepository = null;
 
     /**
      * Inject a event repository to enable DI
      *
-     * @param \BrainAppeal\BrainEventConnector\Domain\Repository\EventRepository $eventRepository
+     * @param \BrainAppeal\CampusEventsConnector\Domain\Repository\EventRepository $eventRepository
      */
-    public function injectEventRepository(\BrainAppeal\BrainEventConnector\Domain\Repository\EventRepository $eventRepository)
+    public function injectEventRepository(\BrainAppeal\CampusEventsConnector\Domain\Repository\EventRepository $eventRepository)
     {
         $this->eventRepository = $eventRepository;
     }
@@ -93,11 +93,11 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     /**
      * action show
      *
-     * @param \BrainAppeal\BrainEventConnector\Domain\Model\Event $event
+     * @param \BrainAppeal\CampusEventsConnector\Domain\Model\Event $event
      *
      * @return void
      */
-    public function showAction(\BrainAppeal\BrainEventConnector\Domain\Model\Event $event) {
+    public function showAction(\BrainAppeal\CampusEventsConnector\Domain\Model\Event $event) {
         $this->view->assign('event', $event);
     }
 

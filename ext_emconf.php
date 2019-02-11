@@ -15,7 +15,7 @@ $EM_CONF[$_EXTKEY] = [
     'constraints' => [
         'depends' => [
             'typo3' => '8.7.0-8.7.99',
-            'brain_event_connector' => '>=0.4.0',
+            'campus_events_connector' => '>=0.4.0',
         ],
         'conflicts' => [],
         'suggests' => [],

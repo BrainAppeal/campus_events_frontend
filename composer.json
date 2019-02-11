@@ -4,6 +4,10 @@
     "description": "Frontend plugins for Campus Events",
     "authors": [
         {
+            "name": "Brain Appeal Team",
+            "email": "info@brain-appeal.com"
+        },
+        {
             "name": "Gert Hammes",
             "role": "Developer"
         }
@@ -23,6 +27,6 @@
     },
     "replace": {
         "campus_events_frontend": "self.version",
-        "typo3-ter/brain-event-frontend": "self.version"
+        "typo3-ter/campus-events-frontend": "self.version"
     }
 }

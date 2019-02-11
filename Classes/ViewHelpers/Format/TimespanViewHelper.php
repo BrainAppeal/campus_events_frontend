@@ -27,12 +27,12 @@
 namespace BrainAppeal\CampusEventsFrontend\ViewHelpers\Format;
 
 use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
-USE BrainAppeal\BrainEventConnector\Domain\Model\TimeRange;
+USE BrainAppeal\CampusEventsConnector\Domain\Model\TimeRange;
 
 /**
  * ViewHelper to render the time span information
  *
- * @package brain_events
+ * @package campus_event
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
 class TimespanViewHelper extends AbstractViewHelper {
