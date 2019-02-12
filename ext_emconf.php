@@ -1,7 +1,7 @@
 <?php
 
 $EM_CONF[$_EXTKEY] = [
-    'title' => 'Campus Events frontend',
+    'title' => 'Campus Events Frontend',
     'description' => 'Frontend plugins for Campus Events',
     'category' => 'plugin',
     'author' => 'Gert Hammes',
