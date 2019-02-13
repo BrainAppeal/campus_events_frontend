@@ -1,16 +1,17 @@
 <?php
-namespace BrainAppeal\CampusEventsFrontend\Controller;
+/**
+ * campus_events_frontend comes with ABSOLUTELY NO WARRANTY
+ * See the GNU GeneralPublic License for more details.
+ * https://www.gnu.org/licenses/gpl-2.0
+ *
+ * Copyright (C) 2019 Brain Appeal GmbH
+ *
+ * @copyright 2019 Brain Appeal GmbH (www.brain-appeal.com)
+ * @license   GPL-2 (www.gnu.org/licenses/gpl-2.0)
+ * @link      https://www.campus-events.com/
+ */
 
-/***
- *
- * This file is part of the "Campus Events frontend" Extension for TYPO3 CMS.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- *
- *  (c) 2018 Gert Hammes <gert.hammes@brain-appeal.com>, Brain Appeal GmbH
- *
- ***/
+namespace BrainAppeal\CampusEventsFrontend\Controller;
 
 use BrainAppeal\CampusEventsConnector\Domain\Model\Event;
 use TYPO3\CMS\Extbase\Mvc\RequestInterface;
