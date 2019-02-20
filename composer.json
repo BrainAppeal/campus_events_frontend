@@ -10,10 +10,6 @@
         {
             "name": "Brain Appeal Team",
             "email": "info@brain-appeal.com"
-        },
-        {
-            "name": "Gert Hammes",
-            "role": "Developer"
         }
     ],
     "require": {
