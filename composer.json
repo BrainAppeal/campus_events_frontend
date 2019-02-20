@@ -3,17 +3,22 @@
     "type": "typo3-cms-extension",
     "description": "Frontend plugins for Campus Events",
     "license": [
-        "GPL-2"
+        "GPL-2.0-only"
     ],
+     "keywords": [
+        "TYPO3",
+        "extension",
+        "event",
+        "events",
+        "veranstaltung",
+        "eventtool"
+     ],
     "homepage": "https://www.campus-events.com/",
     "authors": [
         {
-            "name": "Brain Appeal Team",
-            "email": "info@brain-appeal.com"
-        },
-        {
-            "name": "Gert Hammes",
-            "role": "Developer"
+            "name": "Brain Appeal GmbH",
+            "email": "info@brain-appeal.com",
+            "homepage": "https://www.brain-appeal.com"
         }
     ],
     "require": {
