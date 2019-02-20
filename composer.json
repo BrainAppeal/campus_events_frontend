@@ -5,11 +5,20 @@
     "license": [
         "GPL-2.0-only"
     ],
+     "keywords": [
+        "TYPO3",
+        "extension",
+        "event",
+        "events",
+        "veranstaltung",
+        "eventtool"
+     ],
     "homepage": "https://www.campus-events.com/",
     "authors": [
         {
-            "name": "Brain Appeal Team",
-            "email": "info@brain-appeal.com"
+            "name": "Brain Appeal GmbH",
+            "email": "info@brain-appeal.com",
+            "homepage": "https://www.brain-appeal.com"
         }
     ],
     "require": {
