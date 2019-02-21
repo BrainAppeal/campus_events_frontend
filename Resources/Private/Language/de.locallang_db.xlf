@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file target-language="de" datatype="plaintext" original="messages" date="2018-07-09T15:24:23Z" product-name="campus_events_frontend">
+		<header/>
+		<body>
+			<trans-unit id="tx_campus_events_frontend_event.name">
+				<target>Veranstaltung</target>
+			</trans-unit>
+			<trans-unit id="tx_campus_events_frontend_event.description">
+				<target>Veranstaltungs-Plugin</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

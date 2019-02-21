@@ -1,0 +1,37 @@
+<html xmlns:f="https://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+
+<f:layout name="Default" />
+
+
+<f:section name="content">
+	<f:if condition="{contentData.header}">
+		<h2 class="item-list-header">{contentData.header}</h2>
+	</f:if>
+	<f:if condition="{settings.externalListUrl}">
+		<div class="wrap-show-all above">
+			<f:render section="ShowAllLink" arguments="{event: event, settings: settings}" />
+		</div>
+	</f:if>
+	<f:if condition="{events}">
+		<div class="item-list event-item-list">
+			<f:for each="{events}" as="event">
+				<f:render partial="Event/Item" arguments="{event: event, settings: settings}" />
+			</f:for>
+		</div>
+	</f:if>
+	<f:if condition="{settings.externalListUrl}">
+		<div class="wrap-show-all below">
+			<f:render section="ShowAllLink" arguments="{event: event, settings: settings}" />
+		</div>
+	</f:if>
+</f:section>
+
+<f:section name="ShowAllLink">
+	<a href="{settings.externalListUrl}" target="_blank" class="btn btn-outline primary">
+		<span class="btn-icon">
+			<i class="fa fa-calendar-o" aria-hidden="true"></i>
+			<f:translate key="showAll">Show all</f:translate>
+		</span>
+	</a>
+</f:section>
+</html>

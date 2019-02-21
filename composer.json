@@ -1,0 +1,42 @@
+{
+    "name": "brainappeal/campus_events_frontend",
+    "type": "typo3-cms-extension",
+    "description": "Frontend plugins for Campus Events",
+    "license": [
+        "GPL-2.0-only"
+    ],
+     "keywords": [
+        "TYPO3",
+        "extension",
+        "event",
+        "events",
+        "veranstaltung",
+        "eventtool"
+     ],
+    "homepage": "https://www.campus-events.com/",
+    "authors": [
+        {
+            "name": "Brain Appeal GmbH",
+            "email": "info@brain-appeal.com",
+            "homepage": "https://www.brain-appeal.com"
+        }
+    ],
+    "require": {
+        "typo3/cms-core": "^8.7.1",
+        "brainappeal/campus_events_connector": "^0.9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "BrainAppeal\\CampusEventsFrontend\\": "Classes"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "BrainAppeal\\CampusEventsFrontend\\Tests\\": "Tests"
+        }
+    },
+    "replace": {
+        "campus_events_frontend": "self.version",
+        "typo3-ter/campus_events_frontend": "self.version"
+    }
+}

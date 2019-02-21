@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+
+<T3DataStructure>
+    <meta type="array">
+        <langDisable>1</langDisable>
+        <langDatabaseOverlay>1</langDatabaseOverlay>
+    </meta>
+    <ROOT type="array">
+        <TCEforms>
+            <sheetTitle>LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_tab.settings</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+        <el>
+            <switchableControllerActions>
+                <TCEforms>
+                    <label>LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.mode</label>
+                    <onChange>reload</onChange>
+                    <config>
+                        <type>select</type>
+                        <renderType>selectSingle</renderType>
+                        <items>
+                            <numIndex index="1">
+                                <numIndex index="0">LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.mode.list</numIndex>
+                                <numIndex index="1">Event->list</numIndex>
+                            </numIndex>
+                            <numIndex index="2">
+                                <numIndex index="0">LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.mode.detail</numIndex>
+                                <numIndex index="1">Event->detail</numIndex>
+                            </numIndex>
+                        </items>
+                    </config>
+                </TCEforms>
+            </switchableControllerActions>
+
+            <settings.externalListUrl>
+                <TCEforms>
+                    <displayCond>FIELD:switchableControllerActions:=:Event->list</displayCond>
+                    <label>LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.externalListUrl</label>
+                    <config>
+                        <type>input</type>
+                        <size>40</size>
+                        <eval>required</eval>
+                        <default>https://demo.campus-events.com/</default>
+                    </config>
+                </TCEforms>
+            </settings.externalListUrl>
+
+            <settings.startingpoint>
+                <TCEforms>
+                    <displayCond>FIELD:switchableControllerActions:=:Event->list</displayCond>
+                    <label>LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.storageEvent</label>
+                    <config>
+                        <type>group</type>
+                        <internal_type>db</internal_type>
+                        <allowed>pages</allowed>
+                        <size>3</size>
+                        <maxitems>50</maxitems>
+                        <minitems>1</minitems>
+                    </config>
+                </TCEforms>
+            </settings.startingpoint>
+
+            <!-- Limit Start -->
+            <settings.limit>
+                <TCEforms>
+                    <label>LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_additional.limit</label>
+                    <config>
+                        <type>input</type>
+                        <size>5</size>
+                        <eval>num</eval>
+                    </config>
+                </TCEforms>
+            </settings.limit>
+
+            <!-- Template Layout -->
+            <settings.templateLayout>
+                <TCEforms>
+                    <displayCond>FIELD:switchableControllerActions:=:Event->list</displayCond>
+                    <label>LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.templateLayout</label>
+                    <config>
+                        <type>select</type>
+                        <itemsProcFunc>BrainAppeal\CampusEventsFrontend\Hooks\ItemsProcFunc->user_templateLayout</itemsProcFunc>
+                        <renderType>selectSingle</renderType>
+                        <items>
+                            <numIndex index="0" type="array">
+                                <numIndex index="0"></numIndex>
+                                <numIndex index="1"></numIndex>
+                            </numIndex>
+                        </items>
+                    </config>
+                </TCEforms>
+            </settings.templateLayout>
+        </el>
+    </ROOT>
+</T3DataStructure>
