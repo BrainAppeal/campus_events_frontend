@@ -25,5 +25,5 @@ Webseiten synchronisiert wurden.
 * [campus_events_convert2ttnewscal]( https://github.com/BrainAppeal/campus_events_convert2ttnewscal) – stellt Veranstaltungen als Kalenderblatt dar 
 
 ## Hinweis für TYPO3 Agenturen
-Setzten Sie Campus Events für Ihre Kunden ein und profitieren Sie von einer durchdachen Lösung und interessanten 
-Provisionen. Bitte kontaktieren Sie uns und fragen sie nach dem Partnerprogramm.
+Setzen Sie Campus Events für Ihre Kunden ein und profitieren Sie von einer durchdachen Lösung und interessanten 
+Provisionen. Bitte kontaktieren Sie uns und fragen Sie nach dem Partnerprogramm.
