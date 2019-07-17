@@ -22,7 +22,7 @@
         }
     ],
     "require": {
-        "typo3/cms-core": "^8.7.1",
+        "typo3/cms-core": "^9.5",
         "brainappeal/campus_events_connector": "^0.9.0"
     },
     "autoload": {

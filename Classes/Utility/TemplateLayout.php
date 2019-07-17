@@ -11,7 +11,6 @@
  * @link      https://www.campus-events.com/
  */
 
-
 namespace BrainAppeal\CampusEventsFrontend\Utility;
 
 use TYPO3\CMS\Backend\Utility\BackendUtility;
