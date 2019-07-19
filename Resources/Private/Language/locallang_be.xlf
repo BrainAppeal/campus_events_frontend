@@ -43,7 +43,7 @@
 				<source>Page(s) with training records</source>
 			</trans-unit>
 			<trans-unit id="flexforms_general.limit">
-				<source>Max records displayed</source>
+				<source>Maximum number of records to display</source>
 			</trans-unit>
 		</body>
 	</file>
