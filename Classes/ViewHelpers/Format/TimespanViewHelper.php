@@ -24,7 +24,7 @@ use BrainAppeal\CampusEventsConnector\Domain\Model\TimeRange;
  */
 class TimespanViewHelper extends AbstractViewHelper
 {
-    public function initializeArguments() // TODO: Funktioniert das auch in TYPO3 8? Wenn ja und schön, dann bitte übernehmen
+    public function initializeArguments()
     {
         parent::initializeArguments();
 
@@ -98,7 +98,7 @@ class TimespanViewHelper extends AbstractViewHelper
     {
         if (!$date instanceof \DateTime) {
             try {
-                if (null !== $date) { // TODO: Wenn überhaupt, dann durch is_numeric() ersetzen ...
+                if (is_numeric($date)) {
                     $date = new \DateTime('@' . $date);
                 } else {
                     $date = new \DateTime($date);

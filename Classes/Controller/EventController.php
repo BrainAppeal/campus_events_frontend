@@ -51,7 +51,7 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $pidList = $this->settings['startingpoint'];
         $limit = (int) $this->settings['limit'];
         $timespan = $this->settings['timespan'];
-        $events = $this->eventRepository->findListByPid($pidList); // TODO: Oder By startDate ASC hier
+        $events = $this->eventRepository->findListByPid($pidList);
         if ($timespan !== 'all') {
             $events = $this->filterListAfterTimespan($events,$timespan);
             $events = array_slice($events,0,$limit);
@@ -108,17 +108,17 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      * @return Event[]
      */
     private function filterListAfterTimespan($events, $timespan) {
-        $timespan = (empty($timespan)) ? 'future' : $timespan; // TODO: kann man empty nicht in der Extension config abfangen?
+        $timespan = (empty($timespan)) ? 'future' : $timespan;
         $currentDate = new \DateTime();
         $filteredEvents = [];
         $collectedEvents = [];
 
         $sort = 'ASC';
         foreach ($events as $eventKey => $event) {
-            if (in_array($event->getHash(), $collectedEvents)) {
+            if (in_array($event->getUid(), $collectedEvents)) {
                 continue;
             }
-            $collectedEvents[] = $event->getHash(); // TODO: Waaaas? Wenn dann wohl eher UID ?! Hash ist nicht eindeutig
+            $collectedEvents[] = $event->getUid();
 
             $startDate = $event->getStartDate();
             switch ($timespan) {
@@ -133,15 +133,15 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                         $filteredEvents[] = $event;
                     }
                     break;
-                case '':
-                case 'all': // TODO: Wird niemals erreicht, da aufrufende Funktion bereits eine condition enthält
-                default:
-                    $filteredEvents[] = $event;
-                    break;
             }
         }
 
-        // TODO: In eigene Funktion auslagern
+        $filteredEvents = $this->sortEvents($filteredEvents, $sort);
+        return $filteredEvents;
+    }
+
+    private function sortEvents($filteredEvents, $sort)
+    {
         usort($filteredEvents, function ($eventA, $eventB) use ($sort) {
             /** @var Event $eventA */
             /** @var Event $eventB */
