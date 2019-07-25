@@ -14,7 +14,7 @@
 namespace BrainAppeal\CampusEventsFrontend\ViewHelpers\Format;
 
 use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
-USE BrainAppeal\CampusEventsConnector\Domain\Model\TimeRange;
+use BrainAppeal\CampusEventsConnector\Domain\Model\TimeRange;
 
 /**
  * ViewHelper to render the time span information
@@ -22,8 +22,17 @@ USE BrainAppeal\CampusEventsConnector\Domain\Model\TimeRange;
  * @package campus_event
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class TimespanViewHelper extends AbstractViewHelper {
+class TimespanViewHelper extends AbstractViewHelper
+{
+    public function initializeArguments()
+    {
+        parent::initializeArguments();
 
+        $this->registerArgument('timeRange', 'object', '$timeRange', true);
+        $this->registerArgument('format', 'string', 'format', false);
+        $this->registerArgument('showDate', 'string', 'date', false);
+        $this->registerArgument('showTime', 'string', 'time', false);
+    }
 
     /**
      * Render the supplied DateTime object as a formatted date.
@@ -35,7 +44,12 @@ class TimespanViewHelper extends AbstractViewHelper {
      * @return string Formatted date time span
      * @throws \Exception
      */
-    public function render(TimeRange $timeRange, $format = null, $showDate = true, $showTime = true) {
+    public function render()
+    {
+        $timeRange = $this->arguments['timeRange'];
+        $format = $this->arguments['format'];
+        $showDate = $this->arguments['showDate'];
+        $showTime = $this->arguments['showTime'];
 
         $start = $this->getDateTimeObj($timeRange->getStartDate());
         $end = $this->getDateTimeObj($timeRange->getEndDate());
@@ -66,7 +80,7 @@ class TimespanViewHelper extends AbstractViewHelper {
 
     private function format(\DateTime $date, $format)
     {
-        if (strpos($format, '%') !== FALSE) {
+        if (strpos($format, '%') !== false) {
             return strftime($format, $date->format('U'));
         } else {
             return $date->format($format);
@@ -84,7 +98,7 @@ class TimespanViewHelper extends AbstractViewHelper {
     {
         if (!$date instanceof \DateTime) {
             try {
-                if (is_integer($date)) {
+                if (is_numeric($date)) {
                     $date = new \DateTime('@' . $date);
                 } else {
                     $date = new \DateTime($date);

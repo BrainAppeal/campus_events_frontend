@@ -48,9 +48,12 @@
 			<trans-unit id="flexforms_general.storageEvent">
 				<source>Page(s) with training records</source>
 			</trans-unit>
-			<trans-unit id="flexforms_additional.limit">
-				<source>Max records displayed</source>
+			<trans-unit id="flexforms_general.limit">
+				<source>Maximum number of records to display</source>
 			</trans-unit>
+            <trans-unit id="flexforms_additional.limit">
+                <source>Max records displayed</source>
+            </trans-unit>
 		</body>
 	</file>
 </xliff>
