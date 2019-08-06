@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-    <file target-language="de" datatype="plaintext" original="messages" date="2018-07-31T14:48:23Z"
-          product-name="campus_events_frontend">
+    <file target-language="de" datatype="plaintext" original="messages" date="2018-07-31T14:48:23Z" product-name="campus_events_frontend">
         <header/>
         <body>
-            <trans-unit id="flexforms_tab.settings" xml:space="preserve">
+            <trans-unit id="flexforms_tab.settings">
 				<target>Einstellungen</target>
 			</trans-unit>
-			<trans-unit id="flexforms_general.mode" xml:space="preserve">
+			<trans-unit id="flexforms_general.mode">
 				<target>Ausgabemodus wählen</target>
 			</trans-unit>
-			<trans-unit id="flexforms_general.mode.list" xml:space="preserve">
+			<trans-unit id="flexforms_general.mode.list">
 				<target>Veranstaltungen-Listenansicht</target>
 			</trans-unit>
-			<trans-unit id="flexforms_general.mode.detail" xml:space="preserve">
+			<trans-unit id="flexforms_general.mode.detail">
 				<target>Veranstaltungen-Detailansicht auf eigener Seite</target>
 			</trans-unit>
             <trans-unit id="flexforms_general.externalListUrl">
@@ -31,20 +30,20 @@
             <trans-unit id="flexforms_general.timespan.future">
                 <target>Veranstaltungen aus der Zukunft</target>
             </trans-unit>
-            <trans-unit id="flexforms_general.templateLayout" xml:space="preserve">
+            <trans-unit id="flexforms_general.templateLayout">
 				<target>Template Layout</target>
 			</trans-unit>
-			<trans-unit id="flexforms_general.detailPid" xml:space="preserve">
+			<trans-unit id="flexforms_general.detailPid">
 				<target>Seite mit Detailansicht der Veranstaltungen</target>
 			</trans-unit>
-			<trans-unit id="flexforms_general.backPid" xml:space="preserve">
+			<trans-unit id="flexforms_general.backPid">
 				<target>Seite für Zurück-Link</target>
 			</trans-unit>
-			<trans-unit id="flexforms_general.detailPid" xml:space="preserve" approved="yes">
-				<target state="translated">Seiten-ID für Einzelnachrichten-Ansicht</target>
+			<trans-unit id="flexforms_general.detailPid">
+				<target>Seiten-ID für Einzelnachrichten-Ansicht</target>
 			</trans-unit>
-			<trans-unit id="flexforms_general.backPid" xml:space="preserve" approved="yes">
-				<target state="translated">Seiten-ID für "Zurück"-Link</target>
+			<trans-unit id="flexforms_general.backPid">
+				<target>Seiten-ID für "Zurück"-Link</target>
 			</trans-unit>
             <trans-unit id="flexforms_general.storageEvent">
                 <target>Seite(n) mit Veranstaltungs-Datensätzen</target>

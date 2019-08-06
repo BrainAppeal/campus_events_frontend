@@ -1,7 +1,7 @@
 {
     "name": "brainappeal/campus_events_frontend",
     "type": "typo3-cms-extension",
-    "description": "Frontend plugins for Campus Events",
+    "description": "Manage events, appointments, registrations and participants centrally with Campus Events. To use this extension, a Campus Events installation or access to the API is required. For more information see https://www.campus-events.com",
     "license": [
         "GPL-2.0-only"
     ],
@@ -22,8 +22,8 @@
         }
     ],
     "require": {
-        "typo3/cms-core": "^8.7.1",
-        "brainappeal/campus_events_connector": "^0.9.0"
+        "typo3/cms-core": "~8.7.1|~9.5.0",
+        "brainappeal/campus_events_connector": "^1.0.1"
     },
     "autoload": {
         "psr-4": {

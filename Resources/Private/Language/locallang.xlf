@@ -10,7 +10,7 @@
 				<source>Show all events</source>
 			</trans-unit>
 			<trans-unit id="timeAppend">
-				<source></source>
+				<source>Time</source>
 			</trans-unit>
 		</body>
 	</file>

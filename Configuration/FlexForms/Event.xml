@@ -90,6 +90,33 @@
                     </config>
                 </TCEforms>
             </settings.templateLayout>
+
+            <!-- Timespan Layout -->
+            <settings.timespan>
+                <TCEforms>
+                    <label>LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.timespan</label>
+                    <onChange>reload</onChange>
+                    <config>
+                          <type>select</type>
+                          <items type="array">
+                            <numIndex index="0" type="array">
+                              <numIndex index="0">LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.timespan.future</numIndex>
+                              <numIndex index="1">future</numIndex>
+                            </numIndex>
+                            <numIndex index="1" type="array">
+                              <numIndex index="0">LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.timespan.all</numIndex>
+                              <numIndex index="1">all</numIndex>
+                            </numIndex>
+                            <numIndex index="2" type="array">
+                              <numIndex index="0">LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.timespan.past</numIndex>
+                              <numIndex index="1">past</numIndex>
+                            </numIndex>
+                          </items>
+                        <maxitems>1</maxitems>
+                        <size>1</size>
+                    </config>
+                </TCEforms>
+            </settings.timespan>
         </el>
     </ROOT>
 </T3DataStructure>

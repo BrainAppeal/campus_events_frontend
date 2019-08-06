@@ -51,7 +51,7 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $pidList = $this->settings['startingpoint'];
         $limit = (int) $this->settings['limit'];
         $timespan = $this->settings['timespan'];
-        $events = $this->eventRepository->findListByPid($pidList, []);
+        $events = $this->eventRepository->findListByPid($pidList);
         if ($timespan !== 'all') {
             $events = $this->filterListAfterTimespan($events,$timespan);
             $events = array_slice($events,0,$limit);
@@ -108,25 +108,48 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      * @return Event[]
      */
     private function filterListAfterTimespan($events, $timespan) {
+        $timespan = (empty($timespan)) ? 'future' : $timespan;
         $currentDate = new \DateTime();
         $filteredEvents = [];
+        $collectedEvents = [];
+
+        $sort = 'ASC';
         foreach ($events as $eventKey => $event) {
+            if (in_array($event->getUid(), $collectedEvents)) {
+                continue;
+            }
+            $collectedEvents[] = $event->getUid();
+
             $startDate = $event->getStartDate();
-            $endDate = $event->getEndDate();
-            if ($timespan === 'past') {
-                if ($startDate <= $currentDate) {
-                    $filteredEvents[] = $event;
-                }
-            } else if ($timespan === 'future') {
-                if ($endDate >= $currentDate) {
-                    $filteredEvents[] = $event;
-                }
+            switch ($timespan) {
+                case 'past':
+                    $sort = 'DESC';
+                    if ($startDate <= $currentDate) {
+                        $filteredEvents[] = $event;
+                    }
+                    break;
+                case 'future':
+                    if ($startDate >= $currentDate) {
+                        $filteredEvents[] = $event;
+                    }
+                    break;
             }
         }
-        usort($filteredEvents, function ($eventA, $eventB) {
-           /** @var Event $eventA */
-           /** @var Event $eventB */
-           return $eventA->getStartDate() > $eventB->getStartDate();
+
+        $filteredEvents = $this->sortEvents($filteredEvents, $sort);
+        return $filteredEvents;
+    }
+
+    private function sortEvents($filteredEvents, $sort)
+    {
+        usort($filteredEvents, function ($eventA, $eventB) use ($sort) {
+            /** @var Event $eventA */
+            /** @var Event $eventB */
+            if ($sort == 'DESC') {
+                return $eventA->getStartDate() < $eventB->getStartDate();
+            }
+
+            return $eventA->getStartDate() > $eventB->getStartDate();
         });
         return $filteredEvents;
     }
