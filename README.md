@@ -17,6 +17,9 @@ Diese kostenlose TYPO3 Extension stellt Veranstaltungen und Termine dar, die zuv
 [campus_events_connector](https://github.com/BrainAppeal/campus_events_connector) von Campus Events in die TYPO3 CMS 
 Webseiten synchronisiert wurden.
 
+### Kompatibilität
+TYPO3 8 LTS - 9 LTS 
+
 ### Erweiterbarkeit / Kombinationen
 * [campus_events_connector](https://github.com/BrainAppeal/campus_events_connector)                  – Datenaustausch von Campus Events zu TYPO3
 * [campus_events_frontend](https://github.com/BrainAppeal/campus_events_frontend)                    – Darstellung von Veranstaltungen und Termin auf TYPO3 Webseiten
