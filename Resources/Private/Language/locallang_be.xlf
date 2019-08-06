@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2018-07-31T14:46:11Z" product-name="campus_events_frontend">
+	<file source-language="en" datatype="plaintext" original="messages" date="2018-07-31T14:48:23Z" product-name="campus_events_frontend">
 		<header/>
 		<body>
 			<trans-unit id="flexforms_tab.settings">
@@ -39,12 +39,21 @@
 			<trans-unit id="flexforms_general.backPid">
 				<source>PageId to return to</source>
 			</trans-unit>
+			<trans-unit id="flexforms_general.detailPid">
+				<source>PageId for Singlenews view</source>
+			</trans-unit>
+			<trans-unit id="flexforms_general.backPid">
+				<source>PageId for "back"-link</source>
+			</trans-unit>
 			<trans-unit id="flexforms_general.storageEvent">
 				<source>Page(s) with training records</source>
 			</trans-unit>
 			<trans-unit id="flexforms_general.limit">
-				<source>Max records displayed</source>
+				<source>Maximum number of records to display</source>
 			</trans-unit>
+            <trans-unit id="flexforms_additional.limit">
+                <source>Max records displayed</source>
+            </trans-unit>
 		</body>
 	</file>
 </xliff>
