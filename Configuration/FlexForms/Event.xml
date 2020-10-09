@@ -98,6 +98,7 @@
                     <onChange>reload</onChange>
                     <config>
                           <type>select</type>
+                          <renderType>selectSingle</renderType>
                           <items type="array">
                             <numIndex index="0" type="array">
                               <numIndex index="0">LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.timespan.future</numIndex>
