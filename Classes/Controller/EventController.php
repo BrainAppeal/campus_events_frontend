@@ -94,11 +94,13 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     /**
      * action show
      *
-     * @param \BrainAppeal\CampusEventsConnector\Domain\Model\Event $event
      *
      * @return void
      */
-    public function showAction(\BrainAppeal\CampusEventsConnector\Domain\Model\Event $event) {
+    public function showAction() {
+        $event = $this->settings['event'];
+        $event = $this->eventRepository->findByUid($event);
+
         $this->view->assign('event', $event);
     }
 
