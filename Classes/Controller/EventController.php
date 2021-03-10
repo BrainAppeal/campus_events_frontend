@@ -98,7 +98,6 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     /**
      * action show
      *
-     * @param \BrainAppeal\CampusEventsConnector\Domain\Model\Event $event
      *
      * @return void
      */
