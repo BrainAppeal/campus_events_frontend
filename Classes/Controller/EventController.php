@@ -56,8 +56,12 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             $events = $this->filterListAfterTimespan($events,$timespan);
             $events = array_slice($events,0,$limit);
         }
-        $this->view->assign('events', $events);
-        $this->view->assign('contentData', $cObj->data);
+        $assignedValues = [
+            'events' => $events,
+            'contentData' => $cObj->data,
+            'settings' => $this->settings,
+        ];
+        $this->view->assignMultiple($assignedValues);
     }
 
     /**
@@ -94,12 +98,15 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     /**
      * action show
      *
-     * @param \BrainAppeal\CampusEventsConnector\Domain\Model\Event $event
      *
      * @return void
      */
     public function showAction(\BrainAppeal\CampusEventsConnector\Domain\Model\Event $event) {
-        $this->view->assign('event', $event);
+        $assignedValues = [
+            'event' => $event,
+            'settings' => $this->settings,
+        ];
+        $this->view->assignMultiple($assignedValues);
     }
 
     /**

@@ -64,8 +64,9 @@ class TemplateLayout implements SingletonInterface
     {
         $templateLayouts = [];
         $pagesTsConfig = BackendUtility::getPagesTSconfig($pageUid);
-        if (isset($pagesTsConfig['tx_vierwdfuu.']['templateLayouts.']) && is_array($pagesTsConfig['tx_vierwdfuu.']['templateLayouts.'])) {
-            $templateLayouts = $pagesTsConfig['tx_vierwdfuu.']['templateLayouts.'];
+        if (isset($pagesTsConfig['tx_campuseventsfrontend.']['templateLayouts.'])
+            && is_array($pagesTsConfig['tx_campuseventsfrontend.']['templateLayouts.'])) {
+            $templateLayouts = $pagesTsConfig['tx_campuseventsfrontend.']['templateLayouts.'];
         }
         return $templateLayouts;
     }
