@@ -38,5 +38,10 @@
     "replace": {
         "campus_events_frontend": "self.version",
         "typo3-ter/campus_events_frontend": "self.version"
+    },
+    "extra": {
+	    "typo3/cms": {
+	        "extension-key": "campus_events_frontend"
+	    }
     }
 }
