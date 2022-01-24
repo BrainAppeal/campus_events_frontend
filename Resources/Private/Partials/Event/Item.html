@@ -20,6 +20,18 @@
                 </f:else>
             </f:if>
         </h3>
+        <f:if condition="{event.canceled}">
+            <span class="label label-default label-event-info">
+                <f:if condition="{event.alternativeEvents -> f:count()} > 0">
+                <f:then>
+                    <f:translate key="canceled_and_postphoned">Postponed</f:translate>
+                </f:then>
+                <f:else>
+                    <f:translate key="canceled">Canceled</f:translate>
+                </f:else>
+            </f:if>
+            </span>
+        </f:if>
     </div>
     <div class="item-info-extra item-meta">
         <f:for each="{event.timeRanges}" as="timeRange" iteration="dateIterator">
@@ -28,14 +40,14 @@
                     <div class="date has-fa-icon">
                         <i class="fa fa-calendar-o" aria-hidden="true"></i>
                         <time datetime="{f:format.date(date:timeRange.startDate, format:'Y-m-d')}">
-                            <f:format.raw><braine:format.timespan timeRange="{timeRange}" format="%a, %d.%m.%Y" showTime="false" /></f:format.raw>
-                            <meta itemprop="datePublished" content="{f:format.date(date:timeRange.startDate, format:'Y-m-d')}" />
+                            <f:format.raw><braine:format.timespan timeRange="{timeRange}" format="%a, %d.%m.%Y" showDate="false" /></f:format.raw>
                         </time>
                     </div>
                     <div class="time has-fa-icon">
                         <i class="fa fa-clock-o" aria-hidden="true"></i>
-                        <f:format.raw><braine:format.timespan timeRange="{timeRange}" format="%d.%m.%Y" showDate="false" /></f:format.raw>
+                        <f:format.raw><braine:format.timespan timeRange="{timeRange}" format="%d.%m.%Y" showTime="false" /></f:format.raw>
                         <f:translate key="timeAppend" />
+                        <meta itemprop="datePublished" content="{f:format.date(date:timeRange.startDate, format:'Y-m-d')}" />
                     </div>
                 </div>
                 <f:if condition="{event.location}">
