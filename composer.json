@@ -23,7 +23,7 @@
     ],
     "require": {
         "typo3/cms-core": "~10.4.0|~11.5.0",
-        "brainappeal/campus_events_connector": "^2.0.0|@dev"
+        "brainappeal/campus_events_connector": "^3.0.0"
     },
     "autoload": {
         "psr-4": {
