@@ -14,8 +14,9 @@
 namespace BrainAppeal\CampusEventsFrontend\Controller;
 
 use BrainAppeal\CampusEventsConnector\Domain\Model\Event;
+use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Http\Response;
 use TYPO3\CMS\Extbase\Mvc\RequestInterface;
-use TYPO3\CMS\Extbase\Mvc\ResponseInterface;
 
 /**
  * IndexController
@@ -75,6 +76,8 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $events = $this->eventRepository->findListByPid($pidList);
         if ($timespan !== 'all') {
             $events = $this->filterListAfterTimespan($events,$timespan);
+        }
+        if ($limit > 0 && count($events) > $limit) {
             $events = array_slice($events,0,$limit);
         }
         $assignedValues = [
@@ -90,13 +93,15 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      * @param ResponseInterface $response
      * @throws \Exception
      */
-    public function processRequest(RequestInterface $request, ResponseInterface $response)
+    public function processRequest(RequestInterface $request): ResponseInterface
     {
         try {
-            parent::processRequest($request, $response);
+            $response = parent::processRequest($request);
         } catch (\Exception $exception) {
             $this->handleKnownExceptionsElseThrowAgain($exception);
+            $response = new Response();
         }
+        return $response;
     }
 
     /**

@@ -2,6 +2,8 @@
 
 [![Latest Stable Version](https://poser.pugx.org/brainappeal/campus_events_frontend/v/stable)](https://packagist.org/packages/brainappeal/campus_events_frontend)
 [![License](https://poser.pugx.org/brainappeal/campus_events_frontend/license)](https://packagist.org/packages/brainappeal/campus_events_frontend)
+[![TYPO3 10](https://img.shields.io/badge/TYPO3-10-green.svg)](https://get.typo3.org/version/10)
+[![TYPO3 11](https://img.shields.io/badge/TYPO3-11-green.svg)](https://get.typo3.org/version/11)
 
 ## Campus Events
 Campus Events ist ein Veranstaltungstool, das für den Einsatz bei Hochschulen bzw. für den Bildungssektor optimiert ist. 
@@ -18,15 +20,13 @@ Diese kostenlose TYPO3 Extension stellt Veranstaltungen und Termine dar, die zuv
 Webseiten synchronisiert wurden.
 
 ### Kompatibilität
-TYPO3 8 LTS - 9 LTS 
+TYPO3 10.4 LTS - 11.5 LTS 
 
 ### Erweiterbarkeit / Kombinationen
 * [campus_events_connector](https://github.com/BrainAppeal/campus_events_connector)                  – Datenaustausch von Campus Events zu TYPO3
 * [campus_events_frontend](https://github.com/BrainAppeal/campus_events_frontend)                    – Darstellung von Veranstaltungen und Termin auf TYPO3 Webseiten
 * [campus_events_convert2news](https://github.com/BrainAppeal/campus_events_convert2news)            – wandelt Campus Events-Objekte in EXT:news Objekte 
-* [campus_events_convert2ttnews]( https://github.com/BrainAppeal/campus_events_convert2ttnews)       – wandelt Campus Events-Objekte in EXT:tt_news Objekte 
-* [campus_events_convert2ttnewscal]( https://github.com/BrainAppeal/campus_events_convert2ttnewscal) – stellt Veranstaltungen als Kalenderblatt dar 
 
 ## Hinweis für TYPO3 Agenturen
-Setzen Sie Campus Events für Ihre Kunden ein und profitieren Sie von einer durchdachen Lösung und interessanten 
+Setzen Sie Campus Events für Ihre Kunden ein und profitieren Sie von einer durchdachten Lösung und interessanten 
 Provisionen. Bitte kontaktieren Sie uns und fragen Sie nach dem Partnerprogramm.

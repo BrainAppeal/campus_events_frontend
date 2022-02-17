@@ -51,7 +51,7 @@ class ItemsProcFunc
                     htmlspecialchars($this->getLanguageService()->sL($layout[0])),
                     $layout[1]
                 ];
-                array_push($config['items'], $additionalLayout);
+                $config['items'][] = $additionalLayout;
             }
         }
     }
@@ -70,7 +70,7 @@ class ItemsProcFunc
         $allLayouts = [];
         foreach ($templateLayouts as $key => $layout) {
             if (is_array($layout[0])) {
-                if (isset($layout[0]['allowedColPos']) && StringUtility::endsWith($layout[1], '.')) {
+                if (isset($layout[0]['allowedColPos']) && $this->endsWith($layout[1], '.')) {
                     $layoutKey = substr($layout[1], 0, -1);
                     $restrictions[$layoutKey] = GeneralUtility::intExplode(',', $layout[0]['allowedColPos'], true);
                 }
@@ -87,6 +87,24 @@ class ItemsProcFunc
         }
 
         return $allLayouts;
+    }
+
+    /**
+     * Check if haystack ends with needle; Can be replaced with PHP's native str_ends_with() function
+     *
+     * @param string $haystack
+     * @param string $needle
+     * @return bool
+     */
+    private function endsWith($haystack, $needle)
+    {
+        $haystackLength = strlen($haystack);
+        $needleLength = strlen($needle);
+        if (!$haystackLength || $needleLength > $haystackLength) {
+            return false;
+        }
+        $position = strrpos((string)$haystack, (string)$needle);
+        return $position !== false && $position === $haystackLength - $needleLength;
     }
 
     /**

@@ -14,18 +14,18 @@
 defined('TYPO3_MODE') || die('Access denied.');
 
 call_user_func(
-    function()
+    static function()
     {
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
             'BrainAppeal.CampusEventsFrontend',
             'Event',
             [
-                'Event' => 'list, show'
+                \BrainAppeal\CampusEventsFrontend\Controller\EventController::class => 'list, show'
             ]/*,
             // non-cacheable actions
             [
-                'Event' => 'list'
+                \BrainAppeal\CampusEventsFrontend\Controller\EventController::class => 'list'
             ]*/
         );
 
