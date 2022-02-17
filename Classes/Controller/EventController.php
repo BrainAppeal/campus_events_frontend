@@ -40,6 +40,27 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     }
 
     /**
+     * Initializes the current action
+     *
+     * @return void
+     */
+    public function initializeAction()
+    {
+        // Only do this in Frontend Context
+        if (!empty($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE'])) {
+            // We only want to set the tag once in one request, so we have to cache that statically if it has been done
+            static $cacheTagsSet = false;
+
+            /** @var $typoScriptFrontendController \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController */
+            $typoScriptFrontendController = $GLOBALS['TSFE'];
+            if (!$cacheTagsSet) {
+                $typoScriptFrontendController->addCacheTags(['tx_campus_events']);
+                $cacheTagsSet = true;
+            }
+        }
+    }
+
+    /**
      * action list
      *
      * @return void
@@ -107,6 +128,7 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             'settings' => $this->settings,
         ];
         $this->view->assignMultiple($assignedValues);
+        $GLOBALS['TSFE']->addCacheTags(['tx_campus_events_' . $event->getUid()]);
     }
 
     /**

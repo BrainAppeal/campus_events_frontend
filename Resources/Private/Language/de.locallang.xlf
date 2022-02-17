@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2017-11-22T13:39:16Z" product-name="dhbw_bachelorthesissearch">
+	<file source-language="en" datatype="plaintext" original="messages" date="2017-11-22T13:39:16Z" product-name="campus_events_connector">
 		<header/>
 		<body>
 			<trans-unit id="backToList">
@@ -11,6 +11,12 @@
 			</trans-unit>
 			<trans-unit id="timeAppend">
 				<target>Uhr</target>
+			</trans-unit>
+			<trans-unit id="canceled">
+				<target>Abgesagt</target>
+			</trans-unit>
+			<trans-unit id="canceled_and_postphoned">
+				<target>Verschoben</target>
 			</trans-unit>
 		</body>
 	</file>
