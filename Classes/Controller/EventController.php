@@ -14,12 +14,9 @@
 namespace BrainAppeal\CampusEventsFrontend\Controller;
 
 use BrainAppeal\CampusEventsConnector\Domain\Model\Event;
-use Psr\Http\Message\ResponseInterface;
-use TYPO3\CMS\Core\Http\Response;
-use TYPO3\CMS\Extbase\Mvc\RequestInterface;
 
 /**
- * IndexController
+ * EventController
  */
 class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
@@ -86,39 +83,6 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             'settings' => $this->settings,
         ];
         $this->view->assignMultiple($assignedValues);
-    }
-
-    /**
-     * @param RequestInterface $request
-     * @param ResponseInterface $response
-     * @throws \Exception
-     */
-    public function processRequest(RequestInterface $request): ResponseInterface
-    {
-        try {
-            $response = parent::processRequest($request);
-        } catch (\Exception $exception) {
-            $this->handleKnownExceptionsElseThrowAgain($exception);
-            $response = new Response();
-        }
-        return $response;
-    }
-
-    /**
-     * @param \Exception $exception
-     * @throws \Exception
-     */
-    private function handleKnownExceptionsElseThrowAgain(\Exception $exception)
-    {
-        $previousException = $exception->getPrevious();
-        if (
-            $this->actionMethodName === 'showAction'
-            && $previousException instanceof \TYPO3\CMS\Extbase\Property\Exception
-        ) {
-            $this->redirect('list');
-        } else {
-            throw $exception;
-        }
     }
 
     /**
