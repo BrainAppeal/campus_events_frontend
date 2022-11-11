@@ -10,7 +10,7 @@ Campus Events ist ein Veranstaltungstool, das für den Einsatz bei Hochschulen b
 Es kann jedoch auch in anderen Bereichen zum Einsatz kommen. 
 
 Campus Events unterstützt insbesondere bei der Abwicklung von Veranstaltungen und Teilnehmern. Mehr auf 
-[https://www.campus-events.com](https://www.campus-events.com). 
+[https://www.campus-events.com](https://www.campus-events.com) und [https://hilfe.campus-events.com](https://hilfe.campus-events.com). 
 
 ## TYPO3 Extension
 
