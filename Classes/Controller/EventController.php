@@ -14,6 +14,7 @@
 namespace BrainAppeal\CampusEventsFrontend\Controller;
 
 use BrainAppeal\CampusEventsConnector\Domain\Model\Event;
+use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
 
 /**
  * EventController
@@ -101,11 +102,11 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     }
 
     /**
-     * @param Event[] $events
+     * @param QueryResult|Event[] $events
      * @param string $timespan
      * @return Event[]
      */
-    private function filterListAfterTimespan(array $events, string $timespan): array
+    private function filterListAfterTimespan($events, string $timespan): array
     {
         $timespan = (empty($timespan)) ? 'future' : $timespan;
         $currentDate = new \DateTime();
