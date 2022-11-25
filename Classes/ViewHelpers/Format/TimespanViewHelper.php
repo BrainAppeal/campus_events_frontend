@@ -28,16 +28,16 @@ class TimespanViewHelper extends AbstractViewHelper
     {
         parent::initializeArguments();
 
-        $this->registerArgument('timeRange', 'object', '$timeRange', true);
-        $this->registerArgument('format', 'string', 'format', false);
-        $this->registerArgument('showDate', 'string', 'date', false);
-        $this->registerArgument('showTime', 'string', 'time', false);
+        $this->registerArgument('timeRange', 'object', 'A time range model instance', true);
+        $this->registerArgument('format', 'string', 'The desired date format', false);
+        $this->registerArgument('showDate', 'string', 'Toggle display of date', false);
+        $this->registerArgument('showTime', 'string', 'Toggle display of time', false);
     }
 
     /**
      * Render the supplied DateTime object as a formatted date.
      *
-     * @param TimeRange $timeRange A TIME RANGE INSTACE
+     * @param TimeRange $timeRange A TIME RANGE INSTANCE
      * @param string $format Format for start date (without time part!)
      * @param bool $showDate
      * @param bool $showTime
@@ -78,13 +78,12 @@ class TimespanViewHelper extends AbstractViewHelper
         return $formattedTimeRange;
     }
 
-    private function format(\DateTime $date, $format)
+    private function format(\DateTime $date, $format): bool|string
     {
         if (strpos($format, '%') !== false) {
             return strftime($format, $date->format('U'));
-        } else {
-            return $date->format($format);
         }
+        return $date->format($format);
     }
 
     /**
@@ -94,7 +93,7 @@ class TimespanViewHelper extends AbstractViewHelper
      * @return \DateTime
      * @throws \Exception
      */
-    private function getDateTimeObj($date)
+    private function getDateTimeObj($date): \DateTime
     {
         if (!$date instanceof \DateTime) {
             try {
@@ -104,8 +103,8 @@ class TimespanViewHelper extends AbstractViewHelper
                     $date = new \DateTime($date);
                 }
                 $date->setTimezone(new \DateTimeZone(date_default_timezone_get()));
-            } catch (\Exception $exception) {
-                throw new \Exception('"' . $date . '" could not be parsed by DateTime constructor.', 1241722579);
+            } catch (\Exception $e) {
+                throw new \Exception(sprintf('"' . $date . '" could not be parsed by DateTime constructor: %s.', $e->getMessage()), 1241722579);
             }
         }
         return $date;

@@ -108,7 +108,7 @@ class ItemsProcFunc
     }
 
     /**
-     * Get page id, if negative, then it is a "after record"
+     * Get page id, if negative, then it is an "after record"
      *
      * @param int $pid
      * @return int
