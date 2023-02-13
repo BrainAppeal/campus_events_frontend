@@ -85,7 +85,7 @@ class TimespanViewHelper extends AbstractViewHelper
      * @param string $pattern Pattern for IntlDateFormatter
      * @return bool|string
      */
-    private function format(DateTime $date, string $pattern): bool|string
+    private function format(DateTime $date, string $pattern)
     {
         $fmt = new \IntlDateFormatter(
             'de-DE',
