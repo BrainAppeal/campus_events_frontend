@@ -40,12 +40,13 @@
                     <div class="date has-fa-icon">
                         <i class="fa fa-calendar-o" aria-hidden="true"></i>
                         <time datetime="{f:format.date(date:timeRange.startDate, format:'Y-m-d')}">
-                            <f:format.raw><braine:format.timespan timeRange="{timeRange}" format="%a, %d.%m.%Y" showDate="false" /></f:format.raw>
+                            <f:format.raw><braine:format.timespan timeRange="{timeRange}" format="shortDayAndDate" showTime="false" /></f:format.raw>
+                            <meta itemprop="datePublished" content="{f:format.date(date:timeRange.startDate, format:'Y-m-d')}" />
                         </time>
                     </div>
                     <div class="time has-fa-icon">
                         <i class="fa fa-clock-o" aria-hidden="true"></i>
-                        <f:format.raw><braine:format.timespan timeRange="{timeRange}" format="%d.%m.%Y" showTime="false" /></f:format.raw>
+                        <f:format.raw><braine:format.timespan timeRange="{timeRange}" showDate="false" /></f:format.raw>
                         <f:translate key="timeAppend" />
                         <meta itemprop="datePublished" content="{f:format.date(date:timeRange.startDate, format:'Y-m-d')}" />
                     </div>
