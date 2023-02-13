@@ -14,6 +14,7 @@
 namespace BrainAppeal\CampusEventsFrontend\Controller;
 
 use BrainAppeal\CampusEventsConnector\Domain\Model\Event;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
 
 /**
@@ -71,7 +72,13 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $pidList = $this->settings['startingpoint'];
         $limit = (int) $this->settings['limit'];
         $timespan = $this->settings['timespan'];
-        $events = $this->eventRepository->findListByPid($pidList);
+        $excludeFilterCategories = GeneralUtility::intExplode(',', $this->settings['excludeFilterCategories']);
+        $constraints = [];
+        if (!empty($excludeFilterCategories)) {
+            $query = $this->eventRepository->createQuery();
+            $constraints[] = $query->logicalNot($query->contains('filterCategories', $excludeFilterCategories));
+        }
+        $events = $this->eventRepository->findListByPid($pidList, $constraints);
         if ($timespan !== 'all') {
             $events = $this->filterListAfterTimespan($events, $timespan);
         }

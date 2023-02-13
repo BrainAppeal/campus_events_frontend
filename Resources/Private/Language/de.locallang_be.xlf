@@ -51,6 +51,9 @@
             <trans-unit id="flexforms_additional.limit">
                 <target>Maximale Anzahl anzuzeigender Datensätze</target>
             </trans-unit>
+            <trans-unit id="flexforms_general.excludeFilterCategories">
+                <target>Veranstaltungen mit folgenden Filterkategorien ausblenden:</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

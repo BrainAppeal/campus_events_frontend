@@ -54,6 +54,9 @@
             <trans-unit id="flexforms_additional.limit">
                 <source>Max records displayed</source>
             </trans-unit>
+			<trans-unit id="flexforms_general.excludeFilterCategories">
+				<source>Exclude filter categories</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
