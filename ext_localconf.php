@@ -51,8 +51,8 @@ call_user_func(
 		$iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
         $iconRegistry->registerIcon(
             'campus_events_frontend-plugin-event',
-            \TYPO3\CMS\Core\Imaging\IconProvider\FontawesomeIconProvider::class,
-            ['name' => 'calendar']
+            \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+            ['source' => 'EXT:campus_events_frontend/Resources/Public/Icons/calendar-days-solid.svg']
         );
 
     }
