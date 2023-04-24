@@ -72,7 +72,10 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $pidList = $this->settings['startingpoint'];
         $limit = (int) $this->settings['limit'];
         $timespan = $this->settings['timespan'];
-        $excludeFilterCategories = GeneralUtility::intExplode(',', $this->settings['excludeFilterCategories']);
+        $excludeFilterCategories = [];
+        if (isset($this->settings['excludeFilterCategories'])) {
+            $excludeFilterCategories = GeneralUtility::intExplode(',', $this->settings['excludeFilterCategories'], true);
+        }
         $constraints = [];
         if (!empty($excludeFilterCategories)) {
             $query = $this->eventRepository->createQuery();
