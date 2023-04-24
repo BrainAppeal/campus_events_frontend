@@ -14,6 +14,8 @@
 namespace BrainAppeal\CampusEventsFrontend\Controller;
 
 use BrainAppeal\CampusEventsConnector\Domain\Model\Event;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
 
 /**
  * EventController
@@ -70,9 +72,18 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $pidList = $this->settings['startingpoint'];
         $limit = (int) $this->settings['limit'];
         $timespan = $this->settings['timespan'];
-        $events = $this->eventRepository->findListByPid($pidList);
+        $excludeFilterCategories = [];
+        if (isset($this->settings['excludeFilterCategories'])) {
+            $excludeFilterCategories = GeneralUtility::intExplode(',', $this->settings['excludeFilterCategories'], true);
+        }
+        $constraints = [];
+        if (!empty($excludeFilterCategories)) {
+            $query = $this->eventRepository->createQuery();
+            $constraints[] = $query->logicalNot($query->contains('filterCategories', $excludeFilterCategories));
+        }
+        $events = $this->eventRepository->findListByPid($pidList, $constraints);
         if ($timespan !== 'all') {
-            $events = $this->filterListAfterTimespan($events,$timespan);
+            $events = $this->filterListAfterTimespan($events, $timespan);
         }
         if ($limit > 0 && count($events) > $limit) {
             $events = array_slice($events,0,$limit);
@@ -101,19 +112,20 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     }
 
     /**
-     * @param Event[] $events
+     * @param QueryResult|Event[] $events
      * @param string $timespan
      * @return Event[]
      */
-    private function filterListAfterTimespan($events, $timespan) {
+    private function filterListAfterTimespan($events, string $timespan): array
+    {
         $timespan = (empty($timespan)) ? 'future' : $timespan;
         $currentDate = new \DateTime();
         $filteredEvents = [];
         $collectedEvents = [];
 
         $sort = 'ASC';
-        foreach ($events as $eventKey => $event) {
-            if (in_array($event->getUid(), $collectedEvents)) {
+        foreach ($events as $event) {
+            if (in_array($event->getUid(), $collectedEvents, false)) {
                 continue;
             }
             $collectedEvents[] = $event->getUid();
@@ -134,20 +146,19 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             }
         }
 
-        $filteredEvents = $this->sortEvents($filteredEvents, $sort);
-        return $filteredEvents;
+        return $this->sortEvents($filteredEvents, $sort);
     }
 
     private function sortEvents($filteredEvents, $sort)
     {
-        usort($filteredEvents, function ($eventA, $eventB) use ($sort) {
+        usort($filteredEvents, static function ($eventA, $eventB) use ($sort) {
             /** @var Event $eventA */
             /** @var Event $eventB */
-            if ($sort == 'DESC') {
-                return $eventA->getStartDate() < $eventB->getStartDate();
+            if (strtolower($sort) === 'desc') {
+                return $eventB->getStartDate() <=> $eventA->getStartDate();
             }
 
-            return $eventA->getStartDate() > $eventB->getStartDate();
+            return $eventA->getStartDate() <=> $eventB->getStartDate();
         });
         return $filteredEvents;
     }
