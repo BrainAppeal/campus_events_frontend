@@ -19,6 +19,18 @@ call_user_func(
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
             'CampusEventsFrontend',
+            'Event',
+            [
+                \BrainAppeal\CampusEventsFrontend\Controller\EventController::class => 'list, show'
+            ]/*,
+            // non-cacheable actions
+            [
+                \BrainAppeal\CampusEventsFrontend\Controller\EventController::class => 'list'
+            ]*/
+        );
+
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+            'CampusEventsFrontend',
             'EventList',
             [
                 \BrainAppeal\CampusEventsFrontend\Controller\EventController::class => 'list'
