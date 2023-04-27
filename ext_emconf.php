@@ -24,7 +24,7 @@ $EM_CONF[$_EXTKEY] = [
     'version' => '3.0.3',
     'constraints' => [
         'depends' => [
-            'typo3' => '10.4.13-11.5.99',
+            'typo3' => '11.5.26-12.4.99',
             'campus_events_connector' => '3.0.0-3.999.99',
         ],
         'conflicts' => [],

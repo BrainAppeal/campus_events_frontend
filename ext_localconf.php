@@ -11,22 +11,30 @@
  * @link      https://www.campus-events.com/
  */
 
-defined('TYPO3_MODE') || die('Access denied.');
+defined('TYPO3') or die();
 
 call_user_func(
     static function()
     {
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'BrainAppeal.CampusEventsFrontend',
-            'Event',
-            [
-                \BrainAppeal\CampusEventsFrontend\Controller\EventController::class => 'list, show'
-            ]/*,
-            // non-cacheable actions
+            'CampusEventsFrontend',
+            'EventList',
             [
                 \BrainAppeal\CampusEventsFrontend\Controller\EventController::class => 'list'
-            ]*/
+            ],
+            [],
+            \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
+        );
+
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+            'CampusEventsFrontend',
+            'EventShow',
+            [
+                \BrainAppeal\CampusEventsFrontend\Controller\EventController::class => 'show'
+            ],
+            [],
+            \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
         );
 
         // wizards
@@ -48,12 +56,8 @@ call_user_func(
                 }
            }'
         );
-		$iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
-        $iconRegistry->registerIcon(
-            'campus_events_frontend-plugin-event',
-            \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
-            ['source' => 'EXT:campus_events_frontend/Resources/Public/Icons/calendar-days-solid.svg']
-        );
+        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['txCampusEventsFrontendPluginUpdater'] = \BrainAppeal\CampusEventsFrontend\Updates\PluginUpdater::class;
+        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['txCampusEventsFrontendPluginPermissionUpdater'] = \BrainAppeal\CampusEventsFrontend\Updates\PluginPermissionUpdater::class;
 
     }
 );

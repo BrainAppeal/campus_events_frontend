@@ -57,6 +57,12 @@
 			<trans-unit id="flexforms_general.excludeFilterCategories">
 				<source>Exclude filter categories</source>
 			</trans-unit>
+			<trans-unit id="plugin.event_list.title">
+				<source>Event list</source>
+			</trans-unit>
+			<trans-unit id="plugin.event_show.title">
+				<source>Event details</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
