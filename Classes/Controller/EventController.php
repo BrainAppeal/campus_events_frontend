@@ -63,7 +63,7 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     /**
      * action list
      *
-     * @return void
+     * @return \Psr\Http\Message\ResponseInterface
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException
      */
     public function listAction()
@@ -94,13 +94,14 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             'settings' => $this->settings,
         ];
         $this->view->assignMultiple($assignedValues);
+        return $this->htmlResponse();
     }
 
     /**
      * action show
      *
      *
-     * @return void
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function showAction(\BrainAppeal\CampusEventsConnector\Domain\Model\Event $event) {
         $assignedValues = [
@@ -109,6 +110,7 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         ];
         $this->view->assignMultiple($assignedValues);
         $GLOBALS['TSFE']->addCacheTags(['tx_campus_events_' . $event->getUid()]);
+        return $this->htmlResponse();
     }
 
     /**

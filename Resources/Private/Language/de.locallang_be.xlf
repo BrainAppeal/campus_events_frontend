@@ -54,6 +54,12 @@
             <trans-unit id="flexforms_general.excludeFilterCategories">
                 <target>Veranstaltungen mit folgenden Filterkategorien ausblenden:</target>
             </trans-unit>
+            <trans-unit id="plugin.event_list.title">
+                <target>Veranstaltungsliste</target>
+            </trans-unit>
+            <trans-unit id="plugin.event_show.title">
+                <target>Veranstaltung Details</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
