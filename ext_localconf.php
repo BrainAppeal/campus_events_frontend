@@ -70,6 +70,11 @@ call_user_func(
         );
         $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['txCampusEventsFrontendPluginUpdater'] = \BrainAppeal\CampusEventsFrontend\Updates\PluginUpdater::class;
         $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['txCampusEventsFrontendPluginPermissionUpdater'] = \BrainAppeal\CampusEventsFrontend\Updates\PluginPermissionUpdater::class;
-
+        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScriptSetup(trim('
+    plugin {
+        tx_campuseventsfrontend_eventlist.view.pluginNamespace = tx_campuseventsfrontend_event
+        tx_campuseventsfrontend_eventshow.view.pluginNamespace = tx_campuseventsfrontend_event
+    }
+'));
     }
 );
