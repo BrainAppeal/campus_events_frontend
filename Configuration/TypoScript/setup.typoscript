@@ -1,5 +1,5 @@
 
-plugin.tx_campuseventsfrontend_event {
+plugin.tx_campuseventsfrontend {
 	view {
 		templateRootPaths.0 = EXT:campus_events_frontend/Resources/Private/Templates/
 		templateRootPaths.1 = {$plugin.tx_campuseventsfrontend_event.view.templateRootPath}
@@ -40,7 +40,9 @@ plugin.tx_campuseventsfrontend_event {
 		}
 	}
 }
+
 # Keep compatibility for old list type for TYPO3 11.x
+plugin.tx_campuseventsfrontend_event =< plugin.tx_campuseventsfrontend
 tt_content.list.20.campuseventsfrontend_event = USER
 tt_content.list.20.campuseventsfrontend_event {
 	userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
@@ -48,18 +50,4 @@ tt_content.list.20.campuseventsfrontend_event {
 	vendorName = BrainAppeal
 	extensionName = CampusEventsFrontend
 	controller = Event
-	settings =< plugin.tx_campuseventsfrontend_event.settings
-	persistence =< plugin.tx_campuseventsfrontend_event.persistence
-	view =< plugin.tx_campuseventsfrontend_event.view
-}
-
-tt_content.campuseventsfrontend_eventlist.20 {
-	settings < plugin.tx_campuseventsfrontend_event.settings
-	persistence < plugin.tx_campuseventsfrontend_event.persistence
-	view < plugin.tx_campuseventsfrontend_event.view
-}
-tt_content.campuseventsfrontend_eventshow.20 {
-	settings < plugin.tx_campuseventsfrontend_event.settings
-	persistence < plugin.tx_campuseventsfrontend_event.persistence
-	view < plugin.tx_campuseventsfrontend_event.view
 }
