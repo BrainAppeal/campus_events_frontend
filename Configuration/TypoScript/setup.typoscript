@@ -1,5 +1,5 @@
 
-plugin.tx_campuseventsfrontend_event {
+plugin.tx_campuseventsfrontend {
 	view {
 		templateRootPaths.0 = EXT:campus_events_frontend/Resources/Private/Templates/
 		templateRootPaths.1 = {$plugin.tx_campuseventsfrontend_event.view.templateRootPath}
@@ -27,20 +27,22 @@ plugin.tx_campuseventsfrontend_event {
 		list {
 			# Paginate configuration.
 			paginate {
-				itemsPerPage = {$plugin.tx_dhbwbachelorthesissearch_thesis.settings.list.paginate.itemsPerPage}
+				itemsPerPage = {$plugin.tx_campuseventsfrontend_event.settings.list.paginate.itemsPerPage}
 				insertAbove = 0
 				insertBelow = 1
-				lessPages = {$plugin.tx_dhbwbachelorthesissearch_thesis.settings.list.paginate.lessPages}
-				morePages = {$plugin.tx_dhbwbachelorthesissearch_thesis.settings.list.paginate.morePages}
+				lessPages = {$plugin.tx_campuseventsfrontend_event.settings.list.paginate.lessPages}
+				morePages = {$plugin.tx_campuseventsfrontend_event.settings.list.paginate.morePages}
 				#forcedNumberOfLinks = 5
-				maximumNumberOfLinks = {$plugin.tx_dhbwbachelorthesissearch_thesis.settings.list.paginate.maximumNumberOfLinks}
-				pagesBefore = {$plugin.tx_dhbwbachelorthesissearch_thesis.settings.list.paginate.pagesBefore}
-				pagesAfter = {$plugin.tx_dhbwbachelorthesissearch_thesis.settings.list.paginate.pagesAfter}
+				maximumNumberOfLinks = {$plugin.tx_campuseventsfrontend_event.settings.list.paginate.maximumNumberOfLinks}
+				pagesBefore = {$plugin.tx_campuseventsfrontend_event.settings.list.paginate.pagesBefore}
+				pagesAfter = {$plugin.tx_campuseventsfrontend_event.settings.list.paginate.pagesAfter}
 			}
 		}
 	}
 }
+
 # Keep compatibility for old list type for TYPO3 11.x
+plugin.tx_campuseventsfrontend_event =< plugin.tx_campuseventsfrontend
 tt_content.list.20.campuseventsfrontend_event = USER
 tt_content.list.20.campuseventsfrontend_event {
 	userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
@@ -48,7 +50,4 @@ tt_content.list.20.campuseventsfrontend_event {
 	vendorName = BrainAppeal
 	extensionName = CampusEventsFrontend
 	controller = Event
-	settings =< plugin.tx_campuseventsfrontend_event.settings
-	persistence =< plugin.tx_campuseventsfrontend_event.persistence
-	view =< plugin.tx_campuseventsfrontend_event.view
 }
