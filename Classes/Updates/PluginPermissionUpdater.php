@@ -80,7 +80,7 @@ class PluginPermissionUpdater implements UpgradeWizardInterface
         $queryBuilder = $connectionPool->getQueryBuilderForTable('be_groups');
         $queryBuilder->getRestrictions()->removeAll()->add(GeneralUtility::makeInstance(DeletedRestriction::class));
 
-        $listType = \BrainAppeal\CampusEventsFrontend\Updates\PluginUpdater::DEPRECATED_PLUGIN_LIST_TYPE;
+        $listType = PluginUpdater::DEPRECATED_PLUGIN_LIST_TYPE;
         return $queryBuilder
             ->select('uid', 'explicit_allowdeny')
             ->from('be_groups')
@@ -96,9 +96,9 @@ class PluginPermissionUpdater implements UpgradeWizardInterface
 
     protected function updateRow(array $row): void
     {
-        $listType = \BrainAppeal\CampusEventsFrontend\Updates\PluginUpdater::DEPRECATED_PLUGIN_LIST_TYPE;
+        $listType = PluginUpdater::DEPRECATED_PLUGIN_LIST_TYPE;
         $cTypePermissionLines = [];
-        foreach (\BrainAppeal\CampusEventsFrontend\Updates\PluginUpdater::MIGRATION_SETTINGS as $migrateConf) {
+        foreach (PluginUpdater::MIGRATION_SETTINGS as $migrateConf) {
             $cTypePermissionLines[] = 'tt_content:CType:' . $migrateConf['targetCType'];
         }
         $default = implode(',', $cTypePermissionLines);

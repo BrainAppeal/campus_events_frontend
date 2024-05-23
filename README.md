@@ -23,9 +23,9 @@ Webseiten synchronisiert wurden.
 TYPO3 11.5 LTS - 12.4 LTS
 
 ### Erweiterbarkeit / Kombinationen
-* [campus_events_connector](https://github.com/BrainAppeal/campus_events_connector)                  – Datenaustausch von Campus Events zu TYPO3
-* [campus_events_frontend](https://github.com/BrainAppeal/campus_events_frontend)                    – Darstellung von Veranstaltungen und Termin auf TYPO3 Webseiten
-* [campus_events_convert2news](https://github.com/BrainAppeal/campus_events_convert2news)            – wandelt Campus Events-Objekte in EXT:news Objekte 
+* [campus_events_connector](https://github.com/BrainAppeal/campus_events_connector) – Datenaustausch von Campus Events zu TYPO3
+* [campus_events_frontend](https://github.com/BrainAppeal/campus_events_frontend) – Darstellung von Veranstaltungen und Termin auf TYPO3 Webseiten
+* [campus_events_convert2news](https://github.com/BrainAppeal/campus_events_convert2news) – wandelt Campus Events-Objekte in EXT:news Objekte 
 
 ## Hinweis für TYPO3 Agenturen
 Setzen Sie Campus Events für Ihre Kunden ein und profitieren Sie von einer durchdachten Lösung und interessanten 

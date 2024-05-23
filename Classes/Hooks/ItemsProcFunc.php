@@ -59,11 +59,11 @@ class ItemsProcFunc
     /**
      * Reduce the template layouts by the ones that are not allowed in given colPos
      *
-     * @param array $templateLayouts
+     * @param array<string, array<int, mixed>> $templateLayouts
      * @param int $currentColPos
      * @return array
      */
-    protected function reduceTemplateLayouts($templateLayouts, $currentColPos)
+    protected function reduceTemplateLayouts(array $templateLayouts, int $currentColPos): array
     {
         $currentColPos = (int)$currentColPos;
         $restrictions = [];

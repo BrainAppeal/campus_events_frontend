@@ -15,7 +15,7 @@
 			<trans-unit id="canceled">
 				<target>Abgesagt</target>
 			</trans-unit>
-			<trans-unit id="canceled_and_postphoned">
+			<trans-unit id="canceled_and_postponed">
 				<target>Verschoben</target>
 			</trans-unit>
 		</body>

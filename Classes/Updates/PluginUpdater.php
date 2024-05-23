@@ -89,8 +89,14 @@ class PluginUpdater implements UpgradeWizardInterface
         $records = $this->getMigrationRecords();
 
         foreach ($records as $record) {
+            if (empty($record['pi_flexform'])) {
+                continue;
+            }
             $flexFormData = GeneralUtility::xml2array($record['pi_flexform']);
             $flexForm = $this->flexFormService->convertFlexFormContentToArray($record['pi_flexform']);
+            if (empty($flexForm['switchableControllerActions'])) {
+                continue;
+            }
             $targetCType = $this->getTargetCType($flexForm['switchableControllerActions']);
             $allowedSettings = $this->getAllowedSettingsFromFlexForm($targetCType);
 
