@@ -40,16 +40,18 @@
                     <div class="date has-fa-icon">
                         <i class="fa fa-calendar-o" aria-hidden="true"></i>
                         <time datetime="{f:format.date(date:timeRange.startDate, format:'Y-m-d')}">
-                            <f:format.raw><braine:format.timespan timeRange="{timeRange}" format="shortDayAndDate" showTime="false" /></f:format.raw>
+                            <f:format.raw><braine:format.timespan timeRange="{timeRange}" format="shortDayAndDate" showTime="0" /></f:format.raw>
                             <meta itemprop="datePublished" content="{f:format.date(date:timeRange.startDate, format:'Y-m-d')}" />
                         </time>
                     </div>
-                    <div class="time has-fa-icon">
-                        <i class="fa fa-clock-o" aria-hidden="true"></i>
-                        <f:format.raw><braine:format.timespan timeRange="{timeRange}" showDate="false" /></f:format.raw>
-                        <f:translate key="timeAppend" />
-                        <meta itemprop="datePublished" content="{f:format.date(date:timeRange.startDate, format:'Y-m-d')}" />
-                    </div>
+                    <f:variable name="formattedTime" value="{braine:format.timespan(timeRange: timeRange, showDate: 0, skipTimeIfMidnightOnSameDate: 1)}"/>
+                    <f:if condition="{formattedTime}">
+                        <div class="time has-fa-icon">
+                            <i class="fa fa-clock-o" aria-hidden="true"></i>
+                            <f:format.raw>{formattedTime}</f:format.raw>
+                            <f:translate key="timeAppend" />
+                        </div>
+                    </f:if>
                 </div>
                 <f:if condition="{event.location}">
                     <div class="location has-fa-icon">
