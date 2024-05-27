@@ -1,5 +1,11 @@
 # CHANGELOG.md
 
+## 4.0.3 (2024-05-27)
+
+### Changed
+- don't show event time, if start and end time are set to midnight on the same date
+- Code cleanup
+
 ## 4.0.2 (2023-09-26)
 
 ### Fixed
