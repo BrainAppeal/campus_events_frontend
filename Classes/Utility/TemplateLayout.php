@@ -28,9 +28,9 @@ class TemplateLayout implements SingletonInterface
      * Get available template layouts for a certain page
      *
      * @param int $pageUid
-     * @return array
+     * @return array<int<0,max>, array<int, string>>
      */
-    public function getAvailableTemplateLayouts($pageUid)
+    public function getAvailableTemplateLayouts(int $pageUid): array
     {
         $templateLayouts = [];
 
@@ -57,10 +57,10 @@ class TemplateLayout implements SingletonInterface
     /**
      * Get template layouts defined in TsConfig
      *
-     * @param $pageUid
-     * @return array
+     * @param int $pageUid
+     * @return array<string, string>
      */
-    protected function getTemplateLayoutsFromTsConfig($pageUid)
+    protected function getTemplateLayoutsFromTsConfig(int $pageUid): array
     {
         $templateLayouts = [];
         $pagesTsConfig = BackendUtility::getPagesTSconfig($pageUid);

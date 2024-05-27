@@ -33,6 +33,7 @@ class TimespanViewHelper extends AbstractViewHelper
         $this->registerArgument('format', 'string', 'The desired date format pattern (IntlDateFormatter)', false, 'dd.MM.YYYY');
         $this->registerArgument('showDate', 'bool', 'Toggle display of date', false, true);
         $this->registerArgument('showTime', 'bool', 'Toggle display of time', false, true);
+        $this->registerArgument('skipTimeIfMidnightOnSameDate', 'bool', 'Skip the time value, if start and end date are the same and the time is midnight', false, false);
     }
 
     /**
@@ -45,8 +46,9 @@ class TimespanViewHelper extends AbstractViewHelper
     {
         $timeRange = $this->arguments['timeRange'];
         $format = $this->arguments['format'];
-        $showDate = $this->arguments['showDate'];
-        $showTime = $this->arguments['showTime'];
+        $showDate = (bool) $this->arguments['showDate'];
+        $showTime = (bool) $this->arguments['showTime'];
+        $skipTimeIfMidnightOnSameDate = $showTime && (bool) $this->arguments['skipTimeIfMidnightOnSameDate'];
 
         $start = $this->getDateTimeObj($timeRange->getStartDate());
         $end = $this->getDateTimeObj($timeRange->getEndDate());
@@ -66,11 +68,24 @@ class TimespanViewHelper extends AbstractViewHelper
             if ($showDate) {
                 if ($endDay !== $startDay) {
                     $endTime = $endDay . ', ' . $endTime;
+                    $skipTimeIfMidnightOnSameDate = false;
                 }
-                $timeAppend = $endTime !== $startTime ? ' - ' . $endTime : '';
-                $formattedTimeRange = $startDay . ', ' . $startTime . $timeAppend;
+                if ($endTime !== $startTime) {
+                    $timeAppend = ' - ' . $endTime;
+                    $formattedTimeRange = $startDay . ', ' . $startTime . $timeAppend;
+                } elseif ($skipTimeIfMidnightOnSameDate && $endDay === $startDay) {
+                    $formattedTimeRange = $startDay;
+                } else {
+                    $formattedTimeRange = $startDay . ', ' . $startTime;
+                }
             } else {
-                $formattedTimeRange = $startTime !== $endTime ? $startTime . ' &ndash; ' . $endTime : $startTime;
+                if ($endTime !== $startTime) {
+                    $formattedTimeRange = $startTime . ' &ndash; ' . $endTime;
+                } elseif ($skipTimeIfMidnightOnSameDate) {
+                    $formattedTimeRange = '';
+                } else {
+                    $formattedTimeRange = $startTime;
+                }
             }
         } elseif ($showDate) {
             $formattedTimeRange = $startDay !== $endDay ? $startDay . ' &ndash; ' . $endDay : $startDay;

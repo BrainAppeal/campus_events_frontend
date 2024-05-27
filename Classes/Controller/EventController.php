@@ -16,6 +16,7 @@ namespace BrainAppeal\CampusEventsFrontend\Controller;
 use BrainAppeal\CampusEventsConnector\Domain\Model\Event;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
+use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 /**
  * EventController
@@ -51,7 +52,7 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             // We only want to set the tag once in one request, so we have to cache that statically if it has been done
             static $cacheTagsSet = false;
 
-            /** @var $typoScriptFrontendController \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController */
+            /** @var TypoScriptFrontendController $typoScriptFrontendController  */
             $typoScriptFrontendController = $GLOBALS['TSFE'];
             if (!$cacheTagsSet) {
                 $typoScriptFrontendController->addCacheTags(['tx_campus_events']);
