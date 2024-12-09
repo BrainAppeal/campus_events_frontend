@@ -20,8 +20,10 @@ use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
 use TYPO3\CMS\Core\Service\FlexFormService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Install\Updates\DatabaseUpdatedPrerequisite;
+use TYPO3\CMS\Install\Attribute\UpgradeWizard;
 use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
 
+#[UpgradeWizard('txCampusEventsFrontendPluginUpdater')]
 class PluginUpdater implements UpgradeWizardInterface
 {
     public const DEPRECATED_PLUGIN_LIST_TYPE = 'campuseventsfrontend_event';
@@ -42,11 +44,6 @@ class PluginUpdater implements UpgradeWizardInterface
     public function __construct()
     {
         $this->flexFormService = GeneralUtility::makeInstance(FlexFormService::class);
-    }
-
-    public function getIdentifier(): string
-    {
-        return 'txCampusEventsFrontendPluginUpdater';
     }
 
     public function getTitle(): string
@@ -168,7 +165,7 @@ class PluginUpdater implements UpgradeWizardInterface
             }
         }
         $flexFormFile = $tcaFlexFormDs[$key];
-        $flexFormContent = file_get_contents(GeneralUtility::getFileAbsFileName(substr(trim($flexFormFile), 5)));
+        $flexFormContent = file_get_contents(GeneralUtility::getFileAbsFileName(substr(trim((string) $flexFormFile), 5)));
         $flexFormData = GeneralUtility::xml2array($flexFormContent);
 
         // Iterate each sheet and extract all settings
@@ -234,7 +231,7 @@ class PluginUpdater implements UpgradeWizardInterface
         ];
         $spaceInd = 4;
         $output = GeneralUtility::array2xml($input, '', 0, 'T3FlexForms', $spaceInd, $options);
-        $output = '<?xml version="1.0" encoding="utf-8" standalone="yes" ?>' . LF . $output;
+        $output = '<?xml version="1.0" encoding="utf-8" standalone="yes" ?>' . "\n" . $output;
         return $output;
     }
 }

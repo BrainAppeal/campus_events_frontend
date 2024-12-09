@@ -47,9 +47,13 @@ class ItemsProcFunc
 
             $templateLayouts = $this->reduceTemplateLayouts($templateLayouts, $currentColPos);
             foreach ($templateLayouts as $layout) {
+                $label = $layout['label'];
+                if (strpos($layout['label'], 'LLL') === 0) {
+                    $label = $this->getLanguageService()->sL($label);
+                }
                 $additionalLayout = [
-                    htmlspecialchars($this->getLanguageService()->sL($layout[0])),
-                    $layout[1]
+                    'label' => htmlspecialchars($label),
+                    'value' => $layout['value']
                 ];
                 $config['items'][] = $additionalLayout;
             }
@@ -59,7 +63,7 @@ class ItemsProcFunc
     /**
      * Reduce the template layouts by the ones that are not allowed in given colPos
      *
-     * @param array<string, array<int, mixed>> $templateLayouts
+     * @param array<int<0,max>, array<string, string>> $templateLayouts
      * @param int $currentColPos
      * @return array
      */
@@ -69,11 +73,9 @@ class ItemsProcFunc
         $restrictions = [];
         $allLayouts = [];
         foreach ($templateLayouts as $key => $layout) {
-            if (is_array($layout[0])) {
-                if (isset($layout[0]['allowedColPos']) && $this->endsWith($layout[1], '.')) {
-                    $layoutKey = substr($layout[1], 0, -1);
-                    $restrictions[$layoutKey] = GeneralUtility::intExplode(',', $layout[0]['allowedColPos'], true);
-                }
+            if (isset($layout['allowedColPos']) && $this->endsWith($layout['value'], '.')) {
+                $layoutKey = substr((string) $layout['value'], 0, -1);
+                $restrictions[$layoutKey] = GeneralUtility::intExplode(',', $layout['allowedColPos'], true);
             } else {
                 $allLayouts[$key] = $layout;
             }

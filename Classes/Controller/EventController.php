@@ -14,8 +14,10 @@
 namespace BrainAppeal\CampusEventsFrontend\Controller;
 
 use BrainAppeal\CampusEventsConnector\Domain\Model\Event;
+use TYPO3\CMS\Core\Cache\CacheTag;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
+use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 /**
@@ -28,7 +30,7 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      *
      * @var \BrainAppeal\CampusEventsConnector\Domain\Repository\EventRepository
      */
-    protected $eventRepository = null;
+    protected $eventRepository;
 
     /**
      * Inject a event repository to enable DI
@@ -41,22 +43,29 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     }
 
     /**
-     * Initializes the current action
+     * We only want to set the tag once in one request, so we have to cache that statically if it has been done
      *
-     * @return void
+     * @var bool
      */
-    public function initializeAction()
-    {
-        // Only do this in Frontend Context
-        if (!empty($GLOBALS['TSFE']) && is_object($GLOBALS['TSFE'])) {
-            // We only want to set the tag once in one request, so we have to cache that statically if it has been done
-            static $cacheTagsSet = false;
+    private static $cacheTagsSet = false;
 
-            /** @var TypoScriptFrontendController $typoScriptFrontendController  */
-            $typoScriptFrontendController = $GLOBALS['TSFE'];
-            if (!$cacheTagsSet) {
+    /**
+     * Initializes the current action
+     */
+    public function initializeAction(): void
+    {
+        if (!self::$cacheTagsSet) {
+            $cacheDataCollector = $this->request->getAttribute('frontend.cache.collector');
+            // TYPO3 >= 13
+            if ($cacheDataCollector) {
+                $cacheDataCollector->addCacheTags(...array_map(fn(string $tag) => new CacheTag($tag), ['tx_campus_events']));
+                self::$cacheTagsSet = true;
+            // TYPO3 12
+            } elseif (($GLOBALS['TSFE']??null) instanceof TypoScriptFrontendController) {
+                /** @var TypoScriptFrontendController $typoScriptFrontendController  */
+                $typoScriptFrontendController = $GLOBALS['TSFE'];
                 $typoScriptFrontendController->addCacheTags(['tx_campus_events']);
-                $cacheTagsSet = true;
+                self::$cacheTagsSet = true;
             }
         }
     }
@@ -67,11 +76,12 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      * @return \Psr\Http\Message\ResponseInterface
      * @throws \TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException
      */
-    public function listAction()
+    public function listAction(): \Psr\Http\Message\ResponseInterface
     {
-        $cObj = $this->configurationManager->getContentObject();
+        /** @var ContentObjectRenderer $cObj */
+        $cObj = $this->request->getAttribute('currentContentObject');
         $pidList = $this->settings['startingpoint'];
-        $limit = (int) $this->settings['limit'];
+        $limit = (int)$this->settings['limit'];
         $timespan = $this->settings['timespan'] ?? '';
         $excludeFilterCategories = [];
         if (isset($this->settings['excludeFilterCategories'])) {
@@ -87,7 +97,7 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             $events = $this->filterListAfterTimespan($events, $timespan);
         }
         if ($limit > 0 && count($events) > $limit) {
-            $events = array_slice($events,0,$limit);
+            $events = array_slice($events, 0, $limit);
         }
         $assignedValues = [
             'events' => $events,
@@ -104,7 +114,8 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      *
      * @return \Psr\Http\Message\ResponseInterface
      */
-    public function showAction(\BrainAppeal\CampusEventsConnector\Domain\Model\Event $event) {
+    public function showAction(\BrainAppeal\CampusEventsConnector\Domain\Model\Event $event): \Psr\Http\Message\ResponseInterface
+    {
         $assignedValues = [
             'event' => $event,
             'settings' => $this->settings,
@@ -115,7 +126,7 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     }
 
     /**
-     * @param QueryResult|Event[] $events
+     * @param QueryResultInterface|Event[] $events
      * @param string $timespan
      * @return Event[]
      */
@@ -157,7 +168,7 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         usort($filteredEvents, static function ($eventA, $eventB) use ($sort) {
             /** @var Event $eventA */
             /** @var Event $eventB */
-            if (strtolower($sort) === 'desc') {
+            if (strtolower((string) $sort) === 'desc') {
                 return $eventB->getStartDate() <=> $eventA->getStartDate();
             }
 
@@ -166,7 +177,7 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         return $filteredEvents;
     }
 
-    protected function getErrorFlashMessage()
+    protected function getErrorFlashMessage(): bool|string
     {
         return false;
     }

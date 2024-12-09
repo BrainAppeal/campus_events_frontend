@@ -48,28 +48,6 @@ call_user_func(
             [],
             \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
         );
-
-        // wizards
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
-            'mod {
-                wizards.newContentElement.wizardItems.plugins {
-                    elements {
-                        event {
-                            iconIdentifier = campus_events_frontend-plugin-event
-                            title = LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_db.xlf:tx_campus_events_frontend_event.name
-                            description = LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_db.xlf:tx_campus_events_frontend_event.description
-                            tt_content_defValues {
-                                CType = list
-                                list_type = campuseventsfrontend_event
-                            }
-                        }
-                    }
-                    show = *
-                }
-           }'
-        );
-        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['txCampusEventsFrontendPluginUpdater'] = \BrainAppeal\CampusEventsFrontend\Updates\PluginUpdater::class;
-        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['txCampusEventsFrontendPluginPermissionUpdater'] = \BrainAppeal\CampusEventsFrontend\Updates\PluginPermissionUpdater::class;
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScriptSetup(trim('
     plugin {
         tx_campuseventsfrontend_eventlist.view.pluginNamespace = tx_campuseventsfrontend_event
