@@ -20,14 +20,12 @@ use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Install\Updates\DatabaseUpdatedPrerequisite;
+use TYPO3\CMS\Install\Attribute\UpgradeWizard;
 use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
 
+#[UpgradeWizard('txCampusEventsFrontendPluginPermissionUpdater')]
 class PluginPermissionUpdater implements UpgradeWizardInterface
 {
-    public function getIdentifier(): string
-    {
-        return 'txCampusEventsFrontendPluginPermissionUpdater';
-    }
 
     public function getTitle(): string
     {
@@ -102,20 +100,11 @@ class PluginPermissionUpdater implements UpgradeWizardInterface
             $cTypePermissionLines[] = 'tt_content:CType:' . $migrateConf['targetCType'];
         }
         $default = implode(',', $cTypePermissionLines);
-        if (GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion() >= 12) {
-            $searchReplace = [
-                'tt_content:list_type:'.$listType.':ALLOW' => $default,
-                'tt_content:list_type:'.$listType.':DENY' => '',
-                'tt_content:list_type:'.$listType => $default,
-            ];
-        } else {
-            $default .= ',';
-            $default = str_replace(',', ':ALLOW,', $default);
-            $searchReplace = [
-                'tt_content:list_type:'.$listType.':ALLOW' => $default,
-                'tt_content:list_type:'.$listType.':DENY' => str_replace($default, 'ALLOW', 'DENY'),
-            ];
-        }
+        $searchReplace = [
+            'tt_content:list_type:'.$listType.':ALLOW' => $default,
+            'tt_content:list_type:'.$listType.':DENY' => '',
+            'tt_content:list_type:'.$listType => $default,
+        ];
 
         $newList = str_replace(array_keys($searchReplace), array_values($searchReplace), $row['explicit_allowdeny']);
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('be_groups');

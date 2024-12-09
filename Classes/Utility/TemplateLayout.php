@@ -28,7 +28,7 @@ class TemplateLayout implements SingletonInterface
      * Get available template layouts for a certain page
      *
      * @param int $pageUid
-     * @return array<int<0,max>, array<int, string>>
+     * @return array<int<0,max>, array<string, string>>
      */
     public function getAvailableTemplateLayouts(int $pageUid): array
     {
@@ -39,16 +39,27 @@ class TemplateLayout implements SingletonInterface
             && is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['campus_events_frontend']['templateLayouts'])
         ) {
             $templateLayouts = $GLOBALS['TYPO3_CONF_VARS']['EXT']['campus_events_frontend']['templateLayouts'];
+            foreach ($templateLayouts as &$layout) {
+                if (!isset($layout['label']) && isset($layout[0])) {
+                    $layout['label'] = $layout[0];
+                    unset($layout[0]);
+                }
+                if (!isset($layout['value']) && isset($layout[1])) {
+                    $layout['value'] = $layout[1];
+                    unset($layout[1]);
+                }
+            }
+            unset($layout);
         }
 
         // Add TsConfig values
         foreach ($this->getTemplateLayoutsFromTsConfig($pageUid) as $templateKey => $title) {
-            if (strpos($title, '--div--') === 0) {
+            if (str_starts_with($title, '--div--')) {
                 $optGroupParts = GeneralUtility::trimExplode(',', $title, true, 2);
                 $title = $optGroupParts[1];
                 $templateKey = $optGroupParts[0];
             }
-            $templateLayouts[] = [$title, $templateKey];
+            $templateLayouts[] = ['label' => $title, 'value' => $templateKey];
         }
 
         return $templateLayouts;

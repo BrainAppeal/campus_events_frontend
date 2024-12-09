@@ -6,109 +6,95 @@
         <langDatabaseOverlay>1</langDatabaseOverlay>
     </meta>
     <ROOT type="array">
-        <TCEforms>
-            <sheetTitle>LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_tab.settings</sheetTitle>
-        </TCEforms>
+        <sheetTitle>LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_tab.settings</sheetTitle>
         <type>array</type>
         <el>
 
             <settings.externalListUrl>
-                <TCEforms>
-                    <label>LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.externalListUrl</label>
-                    <config>
-                        <type>input</type>
-                        <size>40</size>
-                        <eval>required</eval>
-                        <default>https://demo.campus-events.com/</default>
-                    </config>
-                </TCEforms>
+                <label>LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.externalListUrl</label>
+                <config>
+                    <type>input</type>
+                    <size>40</size>
+                    <eval>required</eval>
+                    <default>https://demo.campus-events.com/</default>
+                </config>
             </settings.externalListUrl>
 
             <settings.startingpoint>
-                <TCEforms>
-                    <label>LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.storageEvent</label>
-                    <config>
-                        <type>group</type>
-                        <internal_type>db</internal_type>
-                        <allowed>pages</allowed>
-                        <size>3</size>
-                        <maxitems>50</maxitems>
-                        <minitems>1</minitems>
-                    </config>
-                </TCEforms>
+                <label>LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.storageEvent</label>
+                <config>
+                    <type>group</type>
+                    <internal_type>db</internal_type>
+                    <allowed>pages</allowed>
+                    <size>3</size>
+                    <maxitems>50</maxitems>
+                    <minitems>1</minitems>
+                </config>
             </settings.startingpoint>
 
             <!-- Limit Start -->
             <settings.limit>
-                <TCEforms>
-                    <label>LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_additional.limit</label>
-                    <config>
-                        <type>input</type>
-                        <size>5</size>
-                        <eval>num</eval>
-                    </config>
-                </TCEforms>
+                <label>LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_additional.limit</label>
+                <config>
+                    <type>input</type>
+                    <size>5</size>
+                    <eval>num</eval>
+                </config>
             </settings.limit>
 
             <!-- Template Layout -->
             <settings.templateLayout>
-                <TCEforms>
-                    <label>LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.templateLayout</label>
-                    <config>
-                        <type>select</type>
-                        <itemsProcFunc>BrainAppeal\CampusEventsFrontend\Hooks\ItemsProcFunc->user_templateLayout</itemsProcFunc>
-                        <renderType>selectSingle</renderType>
-                        <items>
-                            <numIndex index="0" type="array">
-                                <numIndex index="0"></numIndex>
-                                <numIndex index="1"></numIndex>
-                            </numIndex>
-                        </items>
-                    </config>
-                </TCEforms>
+                <label>LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.templateLayout</label>
+                <config>
+                    <type>select</type>
+                    <itemsProcFunc>BrainAppeal\CampusEventsFrontend\Hooks\ItemsProcFunc->user_templateLayout</itemsProcFunc>
+                    <renderType>selectSingle</renderType>
+                    <items>
+                        <numIndex index="0" type="array">
+                            <label></label>
+                            <value></value>
+                        </numIndex>
+                    </items>
+                </config>
             </settings.templateLayout>
 
             <settings.excludeFilterCategories>
-                <TCEforms>
-                    <label>LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.excludeFilterCategories</label>
-                    <config>
-                        <type>select</type>
-                        <renderType>selectMultipleSideBySide</renderType>
-                        <autoSizeMax>50</autoSizeMax>
-                        <foreign_table>tx_campuseventsconnector_domain_model_filtercategory</foreign_table>
-                        <foreign_table_where> AND LENGTH(name) > 0 ORDER BY name</foreign_table_where>
-                        <maxitems>99</maxitems>
-                        <size>5</size>
-                    </config>
-                </TCEforms>
+                <label>LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.excludeFilterCategories</label>
+                <config>
+                    <type>select</type>
+                    <renderType>selectMultipleSideBySide</renderType>
+                    <autoSizeMax>50</autoSizeMax>
+                    <foreign_table>tx_campuseventsconnector_domain_model_filtercategory</foreign_table>
+                    <foreign_table_where> AND LENGTH(name) > 0 ORDER BY name</foreign_table_where>
+                    <maxitems>99</maxitems>
+                    <size>5</size>
+                </config>
             </settings.excludeFilterCategories>
 
             <!-- Timespan Layout -->
             <settings.timespan>
-                <TCEforms>
-                    <label>LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.timespan</label>
-                    <onChange>reload</onChange>
-                    <config>
-                          <type>select</type>
-                          <renderType>selectSingle</renderType>
-                          <items type="array">
-                            <numIndex index="0" type="array">
-                              <numIndex index="0">LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.timespan.future</numIndex>
-                              <numIndex index="1">future</numIndex>
-                            </numIndex>
-                            <numIndex index="1" type="array">
-                              <numIndex index="0">LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.timespan.all</numIndex>
-                              <numIndex index="1">all</numIndex>
-                            </numIndex>
-                            <numIndex index="2" type="array">
-                              <numIndex index="0">LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.timespan.past</numIndex>
-                              <numIndex index="1">past</numIndex>
-                            </numIndex>
-                          </items>
-                        <maxitems>1</maxitems>
-                        <size>1</size>
-                    </config>
-                </TCEforms>
+                <label>LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.timespan</label>
+                <onChange>reload</onChange>
+                <config>
+                    <type>select</type>
+                    <renderType>selectSingle</renderType>
+                    <items type="array">
+                        <numIndex index="0" type="array">
+                            <label>LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.timespan.future</label>
+                            <value>future</value>
+                        </numIndex>
+                        <numIndex index="1" type="array">
+                            <label>LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.timespan.all</label>
+                            <value>all</value>
+                        </numIndex>
+                        <numIndex index="2" type="array">
+                            <label>LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.timespan.past</label>
+                            <value>past</value>
+                        </numIndex>
+                    </items>
+                    <maxitems>1</maxitems>
+                    <size>1</size>
+                </config>
             </settings.timespan>
         </el>
     </ROOT>
