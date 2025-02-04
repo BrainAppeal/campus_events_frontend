@@ -51,8 +51,17 @@
             <trans-unit id="flexforms_additional.limit">
                 <target>Maximale Anzahl anzuzeigender Datensätze</target>
             </trans-unit>
+            <trans-unit id="flexforms_general.filterCategoryMode">
+                <source>Veranstaltungen mit gesetzten Filterkategorien ...</source>
+            </trans-unit>
+            <trans-unit id="flexforms_general.filterCategoryMode.exclude">
+                <source>ausblenden</source>
+            </trans-unit>
+            <trans-unit id="flexforms_general.filterCategoryMode.include">
+                <source>einblenden</source>
+            </trans-unit>
             <trans-unit id="flexforms_general.excludeFilterCategories">
-                <target>Veranstaltungen mit folgenden Filterkategorien ausblenden:</target>
+                <target>Filterkategorien:</target>
             </trans-unit>
             <trans-unit id="plugin.event_list.title">
                 <target>Veranstaltungsliste</target>

@@ -83,6 +83,7 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $pidList = $this->settings['startingpoint'];
         $limit = (int)$this->settings['limit'];
         $timespan = $this->settings['timespan'] ?? '';
+        $filterCategoryMode = $this->settings['filterCategoryMode'] ?? '';
         $excludeFilterCategories = [];
         if (isset($this->settings['excludeFilterCategories'])) {
             $excludeFilterCategories = GeneralUtility::intExplode(',', $this->settings['excludeFilterCategories'], true);
@@ -90,7 +91,15 @@ class EventController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $constraints = [];
         if (!empty($excludeFilterCategories)) {
             $query = $this->eventRepository->createQuery();
-            $constraints[] = $query->logicalNot($query->contains('filterCategories', $excludeFilterCategories));
+            if ($filterCategoryMode === 'include') {
+                $filterCategoryConstraints = [];
+                foreach ($excludeFilterCategories as $excludeFilterCategory) {
+                    $filterCategoryConstraints[] = $query->contains('filterCategories', $excludeFilterCategory);
+                }
+                $constraints[] = $query->logicalOr(...$filterCategoryConstraints);
+            } else {
+                $constraints[] = $query->logicalNot($query->contains('filterCategories', $excludeFilterCategories));
+            }
         }
         $events = $this->eventRepository->findListByPid($pidList, $constraints);
         if ($timespan !== 'all') {
