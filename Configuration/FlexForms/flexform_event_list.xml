@@ -58,6 +58,25 @@
                 </config>
             </settings.templateLayout>
 
+            <settings.filterCategoryMode>
+                <label>LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.filterCategoryMode</label>
+                <config>
+                    <type>select</type>
+                    <renderType>selectSingle</renderType>
+                    <items type="array">
+                        <numIndex index="0" type="array">
+                            <numIndex index="0">LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.filterCategoryMode.exclude</numIndex>
+                            <numIndex index="1"></numIndex>
+                        </numIndex>
+                        <numIndex index="1" type="array">
+                            <numIndex index="0">LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.filterCategoryMode.include</numIndex>
+                            <numIndex index="1">include</numIndex>
+                        </numIndex>
+                    </items>
+                    <default></default>
+                </config>
+            </settings.filterCategoryMode>
+
             <settings.excludeFilterCategories>
                 <label>LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.excludeFilterCategories</label>
                 <config>

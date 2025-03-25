@@ -1,68 +1,77 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2018-07-31T14:48:23Z" product-name="campus_events_frontend">
-		<header/>
-		<body>
-			<trans-unit id="flexforms_tab.settings">
-				<source>Settings</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.mode">
-				<source>What to display</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.mode.list">
-				<source>Event list view</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.mode.detail">
-				<source>Stand-alone training detail view</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.externalListUrl">
-				<source>External URL for list view</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.timespan">
-				<source>Show Events from the following time span</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.timespan.all">
-				<source>All</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.timespan.past">
-				<source>Events from the past</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.timespan.future">
-				<source>Events from the future</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.templateLayout">
-				<source>Template Layout</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.detailPid">
-				<source>PageId for single training display</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.backPid">
-				<source>PageId to return to</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.detailPid">
-				<source>PageId for Singlenews view</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.backPid">
-				<source>PageId for "back"-link</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.storageEvent">
-				<source>Page(s) with training records</source>
-			</trans-unit>
-			<trans-unit id="flexforms_general.limit">
-				<source>Maximum number of records to display</source>
-			</trans-unit>
+    <file source-language="en" datatype="plaintext" original="messages" date="2018-07-31T14:48:23Z" product-name="campus_events_frontend">
+        <header/>
+        <body>
+            <trans-unit id="flexforms_tab.settings">
+                <source>Settings</source>
+            </trans-unit>
+            <trans-unit id="flexforms_general.mode">
+                <source>What to display</source>
+            </trans-unit>
+            <trans-unit id="flexforms_general.mode.list">
+                <source>Event list view</source>
+            </trans-unit>
+            <trans-unit id="flexforms_general.mode.detail">
+                <source>Stand-alone training detail view</source>
+            </trans-unit>
+            <trans-unit id="flexforms_general.externalListUrl">
+                <source>External URL for list view</source>
+            </trans-unit>
+            <trans-unit id="flexforms_general.timespan">
+                <source>Show Events from the following time span</source>
+            </trans-unit>
+            <trans-unit id="flexforms_general.timespan.all">
+                <source>All</source>
+            </trans-unit>
+            <trans-unit id="flexforms_general.timespan.past">
+                <source>Events from the past</source>
+            </trans-unit>
+            <trans-unit id="flexforms_general.timespan.future">
+                <source>Events from the future</source>
+            </trans-unit>
+            <trans-unit id="flexforms_general.templateLayout">
+                <source>Template Layout</source>
+            </trans-unit>
+            <trans-unit id="flexforms_general.detailPid">
+                <source>PageId for single training display</source>
+            </trans-unit>
+            <trans-unit id="flexforms_general.backPid">
+                <source>PageId to return to</source>
+            </trans-unit>
+            <trans-unit id="flexforms_general.detailPid">
+                <source>PageId for Singlenews view</source>
+            </trans-unit>
+            <trans-unit id="flexforms_general.backPid">
+                <source>PageId for "back"-link</source>
+            </trans-unit>
+            <trans-unit id="flexforms_general.storageEvent">
+                <source>Page(s) with training records</source>
+            </trans-unit>
+            <trans-unit id="flexforms_general.limit">
+                <source>Maximum number of records to display</source>
+            </trans-unit>
             <trans-unit id="flexforms_additional.limit">
                 <source>Max records displayed</source>
             </trans-unit>
-			<trans-unit id="flexforms_general.excludeFilterCategories">
-				<source>Exclude filter categories</source>
-			</trans-unit>
-			<trans-unit id="plugin.event_list.title">
-				<source>Event list</source>
-			</trans-unit>
-			<trans-unit id="plugin.event_show.title">
-				<source>Event details</source>
-			</trans-unit>
-		</body>
-	</file>
+            <trans-unit id="flexforms_general.filterCategoryMode">
+                <source>Filter categories mode</source>
+            </trans-unit>
+            <trans-unit id="flexforms_general.filterCategoryMode.exclude">
+                <source>Exclude filter categories</source>
+            </trans-unit>
+            <trans-unit id="flexforms_general.filterCategoryMode.include">
+                <source>Include filter categories</source>
+            </trans-unit>
+            <trans-unit id="flexforms_general.excludeFilterCategories">
+                <source>Filter categories</source>
+            </trans-unit>
+            <trans-unit id="plugin.event_list.title">
+                <source>Event list</source>
+            </trans-unit>
+            <trans-unit id="plugin.event_show.title">
+                <source>Event details</source>
+            </trans-unit>
+        </body>
+    </file>
 </xliff>

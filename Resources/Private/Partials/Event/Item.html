@@ -1,7 +1,7 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:braine="http://typo3.org/ns/BrainAppeal/CampusEventsFrontend/ViewHelpers"  data-namespace-typo3-fluid="true">
 {namespace braine=BrainAppeal\CampusEventsFrontend\ViewHelpers}
 
-<div class="list-item event-list-item">
+<div class="list-item event-list-item" itemscope="itemscope" itemtype="http://schema.org/Event">
     <div class="item-info-main">
         <f:if condition="{event.categories}">
             <div class="item-categories item-meta">
@@ -13,7 +13,7 @@
         <h3 class="item-title" itemprop="headline">
             <f:if condition="{event.url}">
                 <f:then>
-                    <a href="{event.url}" target="_blank">{event.name}</a>
+                    <a href="{event.url}" target="_blank" itemprop="url">{event.name}</a>
                 </f:then>
                 <f:else>
                     {event.name}
@@ -41,7 +41,8 @@
                         <i class="fa fa-calendar-o" aria-hidden="true"></i>
                         <time datetime="{f:format.date(date:timeRange.startDate, format:'Y-m-d')}">
                             <f:format.raw><braine:format.timespan timeRange="{timeRange}" format="shortDayAndDate" showTime="0" /></f:format.raw>
-                            <meta itemprop="datePublished" content="{f:format.date(date:timeRange.startDate, format:'Y-m-d')}" />
+                            <meta itemprop="startDate" content="{f:format.date(date:timeRange.startDate, format:'Y-m-d')}" />
+                            <meta itemprop="endDate" content="{f:format.date(date:timeRange.endDate, format:'Y-m-d')}" />
                         </time>
                     </div>
                     <f:variable name="formattedTime" value="{braine:format.timespan(timeRange: timeRange, showDate: 0, skipTimeIfMidnightOnSameDate: 1)}"/>
@@ -56,7 +57,7 @@
                 <f:if condition="{event.location}">
                     <div class="location has-fa-icon">
                         <i class="fa fa-map-marker" aria-hidden="true"></i>
-                        {event.location.name}
+                        <span itemprop="location">{event.location.name}</span>
                     </div>
                 </f:if>
             </f:if>
