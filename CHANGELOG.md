@@ -1,5 +1,13 @@
 # CHANGELOG.md
 
+## 5.0.1 (2025-03-26)
+
+### Added:
+- Allow filter categories to be used as include and exclude filter.
+
+### Changed
+- update itemprop attributes for list items
+
 ## 5.0.0 (2024-12-09)
 
 ### Added:
