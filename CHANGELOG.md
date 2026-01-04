@@ -1,5 +1,10 @@
 # CHANGELOG.md
 
+## 5.1.0 (2026-01-04)
+
+### Changed
+- remove old API support
+
 ## 5.0.1 (2025-03-26)
 
 ### Added:

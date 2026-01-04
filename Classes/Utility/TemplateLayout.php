@@ -1,4 +1,5 @@
 <?php
+
 /**
  * campus_events_frontend comes with ABSOLUTELY NO WARRANTY
  * See the GNU GeneralPublic License for more details.
@@ -11,7 +12,6 @@
  * @link      https://www.campus-events.com/
  */
 
-
 namespace BrainAppeal\CampusEventsFrontend\Utility;
 
 use TYPO3\CMS\Backend\Utility\BackendUtility;
@@ -23,7 +23,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class TemplateLayout implements SingletonInterface
 {
-
     /**
      * Get available template layouts for a certain page
      *

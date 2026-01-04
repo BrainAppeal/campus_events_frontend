@@ -19,11 +19,11 @@ $EM_CONF['campus_events_frontend'] = [
     'author_company' => 'Brain Appeal GmbH',
     'author_email' => 'info@brain-appeal.com',
     'state' => 'stable',
-    'version' => '5.0.1',
+    'version' => '5.1.0',
     'constraints' => [
         'depends' => [
             'typo3' => '12.4.0-13.4.99',
-            'campus_events_connector' => '5.0.0-5.99.99',
+            'campus_events_connector' => '5.2.0-5.99.99',
         ],
         'conflicts' => [],
         'suggests' => [],
