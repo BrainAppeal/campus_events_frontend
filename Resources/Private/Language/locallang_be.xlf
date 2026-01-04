@@ -1,77 +1,101 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-    <file source-language="en" datatype="plaintext" original="messages" date="2018-07-31T14:48:23Z" product-name="campus_events_frontend">
-        <header/>
-        <body>
-            <trans-unit id="flexforms_tab.settings">
-                <source>Settings</source>
+	<file source-language="en" datatype="plaintext" original="messages" date="2018-07-31T14:48:23Z" product-name="campus_events_frontend">
+		<header/>
+		<body>
+			<trans-unit id="plugin.event_list.title">
+				<source>Event list</source>
+			</trans-unit>
+			<trans-unit id="plugin.event_list.description">
+				<source>Listing of all events available in the system.</source>
+			</trans-unit>
+			<trans-unit id="plugin.event_detail.title">
+				<source>Event detail page</source>
+			</trans-unit>
+			<trans-unit id="plugin.event_detail.description">
+				<source>Display of event information on a detail page.</source>
+			</trans-unit>
+			<trans-unit id="flexforms_tab.settings">
+				<source>Settings</source>
+			</trans-unit>
+			<trans-unit id="flexforms_general.timespan">
+				<source>Show events from the following time span</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.timespanDateField">
+                <source>Date field for selected time span filter type</source>
             </trans-unit>
-            <trans-unit id="flexforms_general.mode">
-                <source>What to display</source>
+            <trans-unit id="flexforms_general.timespanDateField.start_tstamp">
+                <source>Start date</source>
+			</trans-unit>
+            <trans-unit id="flexforms_general.timespanDateField.end_tstamp">
+                <source>End date</source>
+			</trans-unit>
+			<trans-unit id="flexforms_general.timespan.all">
+				<source>All</source>
+			</trans-unit>
+			<trans-unit id="flexforms_general.timespan.past">
+				<source>Events from the past</source>
+			</trans-unit>
+			<trans-unit id="flexforms_general.timespan.future">
+				<source>Events from the future</source>
+			</trans-unit>
+			<trans-unit id="flexforms_general.templateLayout">
+				<source>Template Layout</source>
+			</trans-unit>
+			<trans-unit id="flexforms_general.backPid">
+				<source>PageId to return to</source>
+			</trans-unit>
+			<trans-unit id="flexforms_general.detailPid">
+				<source>Event details page</source>
+			</trans-unit>
+			<trans-unit id="flexforms_general.detailPid.description">
+				<source>Select a page to display the event details view. If no page is selected, the default details page will be used.</source>
+			</trans-unit>
+			<trans-unit id="flexforms_general.storageEvent">
+				<source>Page(s) with training records</source>
+			</trans-unit>
+			<trans-unit id="flexforms_general.limit">
+				<source>Maximum number of events to display</source>
+			</trans-unit>
+			<trans-unit id="flexforms_general.filterCategoryMode">
+				<source>Filter categories mode</source>
+			</trans-unit>
+			<trans-unit id="flexforms_general.filterCategoryMode.exclude">
+				<source>Exclude filter categories</source>
+			</trans-unit>
+			<trans-unit id="flexforms_general.filterCategoryMode.include">
+				<source>Include filter categories</source>
             </trans-unit>
-            <trans-unit id="flexforms_general.mode.list">
-                <source>Event list view</source>
-            </trans-unit>
-            <trans-unit id="flexforms_general.mode.detail">
-                <source>Stand-alone training detail view</source>
-            </trans-unit>
-            <trans-unit id="flexforms_general.externalListUrl">
-                <source>External URL for list view</source>
-            </trans-unit>
-            <trans-unit id="flexforms_general.timespan">
-                <source>Show Events from the following time span</source>
-            </trans-unit>
-            <trans-unit id="flexforms_general.timespan.all">
-                <source>All</source>
-            </trans-unit>
-            <trans-unit id="flexforms_general.timespan.past">
-                <source>Events from the past</source>
-            </trans-unit>
-            <trans-unit id="flexforms_general.timespan.future">
-                <source>Events from the future</source>
-            </trans-unit>
-            <trans-unit id="flexforms_general.templateLayout">
-                <source>Template Layout</source>
-            </trans-unit>
-            <trans-unit id="flexforms_general.detailPid">
-                <source>PageId for single training display</source>
-            </trans-unit>
-            <trans-unit id="flexforms_general.backPid">
-                <source>PageId to return to</source>
-            </trans-unit>
-            <trans-unit id="flexforms_general.detailPid">
-                <source>PageId for Singlenews view</source>
-            </trans-unit>
-            <trans-unit id="flexforms_general.backPid">
-                <source>PageId for "back"-link</source>
-            </trans-unit>
-            <trans-unit id="flexforms_general.storageEvent">
-                <source>Page(s) with training records</source>
-            </trans-unit>
-            <trans-unit id="flexforms_general.limit">
-                <source>Maximum number of records to display</source>
-            </trans-unit>
-            <trans-unit id="flexforms_additional.limit">
-                <source>Max records displayed</source>
-            </trans-unit>
-            <trans-unit id="flexforms_general.filterCategoryMode">
-                <source>Filter categories mode</source>
-            </trans-unit>
-            <trans-unit id="flexforms_general.filterCategoryMode.exclude">
-                <source>Exclude filter categories</source>
-            </trans-unit>
-            <trans-unit id="flexforms_general.filterCategoryMode.include">
-                <source>Include filter categories</source>
-            </trans-unit>
-            <trans-unit id="flexforms_general.excludeFilterCategories">
-                <source>Filter categories</source>
-            </trans-unit>
-            <trans-unit id="plugin.event_list.title">
-                <source>Event list</source>
-            </trans-unit>
-            <trans-unit id="plugin.event_show.title">
-                <source>Event details</source>
-            </trans-unit>
-        </body>
-    </file>
+			<trans-unit id="flexforms_general.excludeFilterCategories">
+				<source>Filter categories</source>
+			</trans-unit>
+			<trans-unit id="flexforms_general.viewList">
+				<source>View list</source>
+			</trans-unit>
+			<trans-unit id="flexforms_general.viewLists">
+				<source>View lists</source>
+			</trans-unit>
+			<trans-unit id="plugin.event_list.title">
+				<source>Event overview</source>
+			</trans-unit>
+			<trans-unit id="plugin.event_show.title">
+				<source>Event details</source>
+			</trans-unit>
+			<trans-unit id="flexforms_general.templateLayout.default">
+				<source>Default list view</source>
+			</trans-unit>
+			<trans-unit id="flexforms_general.listPid">
+				<source>Page for event list view</source>
+			</trans-unit>
+			<trans-unit id="flexforms_general.listPid.detail_description">
+				<source>When a page is selected, a button with the text "Further events" appears below the event.  No button is displayed without a selection.</source>
+			</trans-unit>
+			<trans-unit id="flexforms_general.externalListUrl">
+				<source>External URL for list view</source>
+			</trans-unit>
+			<trans-unit id="flexforms_general.select_event">
+				<source>Select event</source>
+			</trans-unit>
+		</body>
+	</file>
 </xliff>

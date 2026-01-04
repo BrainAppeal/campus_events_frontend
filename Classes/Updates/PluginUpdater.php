@@ -165,7 +165,7 @@ class PluginUpdater implements UpgradeWizardInterface
             }
         }
         $flexFormFile = $tcaFlexFormDs[$key];
-        $flexFormContent = file_get_contents(GeneralUtility::getFileAbsFileName(substr(trim((string) $flexFormFile), 5)));
+        $flexFormContent = file_get_contents(GeneralUtility::getFileAbsFileName(substr(trim((string)$flexFormFile), 5)));
         $flexFormData = GeneralUtility::xml2array($flexFormContent);
 
         // Iterate each sheet and extract all settings

@@ -3,23 +3,32 @@
     <file target-language="de" datatype="plaintext" original="messages" date="2018-07-31T14:48:23Z" product-name="campus_events_frontend">
         <header/>
         <body>
+            <trans-unit id="plugin.event_list.title">
+                <target>Liste von Veranstaltungen</target>
+            </trans-unit>
+            <trans-unit id="plugin.event_list.description">
+                <target>Auflistung aller in Campus Events verfügbaren Veranstaltungen und Filterung nach Kategorien</target>
+            </trans-unit>
+            <trans-unit id="plugin.event_detail.title">
+                <target>Veranstaltungsdetailseite</target>
+            </trans-unit>
+            <trans-unit id="plugin.event_detail.description">
+                <target>Anzeige von Veranstaltungsinformationen auf einer Detailseite.</target>
+            </trans-unit>
             <trans-unit id="flexforms_tab.settings">
 				<target>Einstellungen</target>
 			</trans-unit>
-			<trans-unit id="flexforms_general.mode">
-				<target>Ausgabemodus wählen</target>
-			</trans-unit>
-			<trans-unit id="flexforms_general.mode.list">
-				<target>Veranstaltungen-Listenansicht</target>
-			</trans-unit>
-			<trans-unit id="flexforms_general.mode.detail">
-				<target>Veranstaltungen-Detailansicht auf eigener Seite</target>
-			</trans-unit>
-            <trans-unit id="flexforms_general.externalListUrl">
-                <target>Externe URL für Listenansicht</target>
-            </trans-unit>
             <trans-unit id="flexforms_general.timespan">
                 <target>Zeige Veranstaltungen aus folgendem Zeitraum an</target>
+            </trans-unit>
+            <trans-unit id="flexforms_general.timespanDateField">
+                <target>Datumsfeld für ausgewählten Zeitraum-Filter</target>
+            </trans-unit>
+            <trans-unit id="flexforms_general.timespanDateField.start_tstamp">
+                <target>Startdatum</target>
+            </trans-unit>
+            <trans-unit id="flexforms_general.timespanDateField.end_tstamp">
+                <target>Enddatum</target>
             </trans-unit>
             <trans-unit id="flexforms_general.timespan.all">
                 <target>Alle</target>
@@ -31,43 +40,61 @@
                 <target>Veranstaltungen aus der Zukunft</target>
             </trans-unit>
             <trans-unit id="flexforms_general.templateLayout">
-				<target>Template Layout</target>
+				<target>Vorlage</target>
 			</trans-unit>
-			<trans-unit id="flexforms_general.detailPid">
-				<target>Seite mit Detailansicht der Veranstaltungen</target>
-			</trans-unit>
-			<trans-unit id="flexforms_general.backPid">
-				<target>Seite für Zurück-Link</target>
-			</trans-unit>
-			<trans-unit id="flexforms_general.detailPid">
-				<target>Seiten-ID für Einzelnachrichten-Ansicht</target>
-			</trans-unit>
-			<trans-unit id="flexforms_general.backPid">
-				<target>Seiten-ID für "Zurück"-Link</target>
-			</trans-unit>
+            <trans-unit id="flexforms_general.backPid">
+                <target>Seiten-ID für "Zurück"-Link</target>
+            </trans-unit>
+            <trans-unit id="flexforms_general.detailPid">
+                <target>Detailseite der Veranstaltungen</target>
+            </trans-unit>
+            <trans-unit id="flexforms_general.detailPid.description">
+                <target>Wählen Sie eine Seite aus, auf der die Detailansicht der Veranstaltungen angezeigt werden soll. Wenn keine Seite ausgewählt ist, wird die Standard-Detailseite verwendet.</target>
+            </trans-unit>
             <trans-unit id="flexforms_general.storageEvent">
                 <target>Seite(n) mit Veranstaltungs-Datensätzen</target>
             </trans-unit>
-            <trans-unit id="flexforms_additional.limit">
-                <target>Maximale Anzahl anzuzeigender Datensätze</target>
+            <trans-unit id="flexforms_general.limit">
+                <target>Maximale Anzahl anzuzeigender Veranstaltungen</target>
             </trans-unit>
             <trans-unit id="flexforms_general.filterCategoryMode">
-                <source>Veranstaltungen mit gesetzten Filterkategorien ...</source>
+                <target>Veranstaltungen mit gesetzten Filterkategorien ...</target>
             </trans-unit>
             <trans-unit id="flexforms_general.filterCategoryMode.exclude">
-                <source>ausblenden</source>
+                <target>ausblenden</target>
             </trans-unit>
             <trans-unit id="flexforms_general.filterCategoryMode.include">
-                <source>einblenden</source>
+                <target>einblenden</target>
             </trans-unit>
             <trans-unit id="flexforms_general.excludeFilterCategories">
-                <target>Filterkategorien:</target>
+                <target>Kategorien:</target>
+            </trans-unit>
+            <trans-unit id="flexforms_general.viewList">
+                <target>Veranstaltungsliste</target>
+            </trans-unit>
+            <trans-unit id="flexforms_general.viewLists">
+                <target>Veranstaltungslisten (Campus Events)</target>
             </trans-unit>
             <trans-unit id="plugin.event_list.title">
-                <target>Veranstaltungsliste</target>
+                <target>Veranstaltungsübersicht</target>
             </trans-unit>
             <trans-unit id="plugin.event_show.title">
                 <target>Veranstaltung Details</target>
+            </trans-unit>
+            <trans-unit id="flexforms_general.templateLayout.default">
+                <target>Listenansicht (Standard)</target>
+            </trans-unit>
+            <trans-unit id="flexforms_general.listPid">
+                <target>Seite für Veranstaltungsübersicht</target>
+            </trans-unit>
+            <trans-unit id="flexforms_general.listPid.detail_description">
+                <target>Wenn eine Seite ausgewählt ist, erscheint unter der Veranstaltung ein Button mit dem Text „Weitere Veranstaltungen“. Ohne Auswahl wird kein Button angezeigt.</target>
+            </trans-unit>
+            <trans-unit id="flexforms_general.externalListUrl">
+                <target>Externe URL für Listenansicht</target>
+            </trans-unit>
+            <trans-unit id="flexforms_general.select_event">
+                <target>Veranstaltung wählen</target>
             </trans-unit>
         </body>
     </file>

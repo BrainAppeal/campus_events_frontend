@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-
 <T3DataStructure>
     <meta type="array">
         <langDisable>1</langDisable>
@@ -9,16 +8,33 @@
         <sheetTitle>LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_tab.settings</sheetTitle>
         <type>array</type>
         <el>
+            <settings.listPid>
+                <label>LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.listPid</label>
+                <description>LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.listPid.detail_description</description>
+                <config>
+                    <type>group</type>
+                    <allowed>pages</allowed>
+                    <size>1</size>
+                    <maxitems>1</maxitems>
+                    <minitems>0</minitems>
+                    <suggestOptions>
+                        <default>
+                            <addWhere>AND pages.doktype NOT in (6,199,254)</addWhere>
+                        </default>
+                    </suggestOptions>
+                </config>
+            </settings.listPid>
 
             <settings.event>
-                <label>LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.event</label>
+                <label>LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.select_event</label>
                 <config>
                     <type>group</type>
                     <internal_type>db</internal_type>
                     <allowed>tx_campuseventsconnector_domain_model_event</allowed>
+                    <foreign_table_where>AND (tx_campuseventsconnector_domain_model_event.sys_language_uid = 0 OR tx_campuseventsconnector_domain_model_event.l10n_parent = 0) ORDER BY tx_campuseventsconnector_domain_model_event.name</foreign_table_where>
                     <size>1</size>
                     <maxitems>1</maxitems>
-                    <minitems>1</minitems>
+                    <minitems>0</minitems>
                 </config>
             </settings.event>
         </el>

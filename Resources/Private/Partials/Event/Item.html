@@ -1,4 +1,4 @@
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:braine="http://typo3.org/ns/BrainAppeal/CampusEventsFrontend/ViewHelpers"  data-namespace-typo3-fluid="true">
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:braine="https://typo3.org/ns/BrainAppeal/CampusEventsFrontend/ViewHelpers"  data-namespace-typo3-fluid="true">
 {namespace braine=BrainAppeal\CampusEventsFrontend\ViewHelpers}
 
 <div class="list-item event-list-item" itemscope="itemscope" itemtype="http://schema.org/Event">
@@ -10,16 +10,28 @@
                 </f:for>
             </div>
         </f:if>
+        <f:variable name="detailUri" value=""/>
+        <f:if condition="{settings.detailPid}">
+            <f:then>
+                <f:variable name="detailUri" value="{f:uri.action(action: 'show', pageUid: settings.detailPid, arguments:{event:event})}" />
+            </f:then>
+        </f:if>
+        <f:if condition="!{detailUri}">
+            <f:variable name="detailUri" value="{event.url}"/>
+        </f:if>
         <h3 class="item-title" itemprop="headline">
-            <f:if condition="{event.url}">
+            <f:if condition="{detailUri}">
                 <f:then>
-                    <a href="{event.url}" target="_blank" itemprop="url">{event.name}</a>
+                    <a href="{detailUri}" target="_blank" itemprop="url">{event.name}</a>
                 </f:then>
                 <f:else>
                     {event.name}
                 </f:else>
             </f:if>
         </h3>
+        <f:if condition="{event.eventImages} && {event.eventImages.0.imageFile}">
+            <f:image image="{event.eventImages.0.imageFile}" width="200"/>
+        </f:if>
         <f:if condition="{event.canceled}">
             <span class="label label-default label-event-info">
                 <f:if condition="{event.alternativeEvents -> f:count()} > 0">

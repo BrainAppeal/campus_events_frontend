@@ -1,4 +1,5 @@
 <?php
+
 /**
  * campus_events_frontend comes with ABSOLUTELY NO WARRANTY
  * See the GNU GeneralPublic License for more details.
@@ -11,22 +12,19 @@
  * @link      https://www.campus-events.com/
  */
 
-
 namespace BrainAppeal\CampusEventsFrontend\Updates;
 
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
-use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Install\Updates\DatabaseUpdatedPrerequisite;
 use TYPO3\CMS\Install\Attribute\UpgradeWizard;
+use TYPO3\CMS\Install\Updates\DatabaseUpdatedPrerequisite;
 use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
 
 #[UpgradeWizard('txCampusEventsFrontendPluginPermissionUpdater')]
 class PluginPermissionUpdater implements UpgradeWizardInterface
 {
-
     public function getTitle(): string
     {
         return 'EXT:campus_events_frontend: Migrate plugin permissions';
@@ -85,7 +83,7 @@ class PluginPermissionUpdater implements UpgradeWizardInterface
             ->where(
                 $queryBuilder->expr()->like(
                     'explicit_allowdeny',
-                    $queryBuilder->createNamedParameter('%' . $queryBuilder->escapeLikeWildcards('tt_content:list_type:'.$listType) . '%')
+                    $queryBuilder->createNamedParameter('%' . $queryBuilder->escapeLikeWildcards('tt_content:list_type:' . $listType) . '%')
                 )
             )
             ->executeQuery()
@@ -101,9 +99,9 @@ class PluginPermissionUpdater implements UpgradeWizardInterface
         }
         $default = implode(',', $cTypePermissionLines);
         $searchReplace = [
-            'tt_content:list_type:'.$listType.':ALLOW' => $default,
-            'tt_content:list_type:'.$listType.':DENY' => '',
-            'tt_content:list_type:'.$listType => $default,
+            'tt_content:list_type:' . $listType . ':ALLOW' => $default,
+            'tt_content:list_type:' . $listType . ':DENY' => '',
+            'tt_content:list_type:' . $listType => $default,
         ];
 
         $newList = str_replace(array_keys($searchReplace), array_values($searchReplace), $row['explicit_allowdeny']);

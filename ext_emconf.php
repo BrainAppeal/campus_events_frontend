@@ -23,7 +23,7 @@ $EM_CONF['campus_events_frontend'] = [
     'constraints' => [
         'depends' => [
             'typo3' => '12.4.0-13.4.99',
-            'campus_events_connector' => '5.0.0-5.99.99',
+            'campus_events_connector' => '5.2.0-5.99.99',
         ],
         'conflicts' => [],
         'suggests' => [],

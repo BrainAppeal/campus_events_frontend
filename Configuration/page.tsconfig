@@ -1,13 +1,20 @@
 mod {
     wizards.newContentElement.wizardItems.plugins {
         elements {
-            event {
+            event_list {
                 iconIdentifier = campus_events_frontend-plugin-event
-                title = LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_db.xlf:tx_campus_events_frontend_event.name
-                description = LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_db.xlf:tx_campus_events_frontend_event.description
+                title = LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:plugin.event_list.title
+                description = LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:plugin.event_list.description
                 tt_content_defValues {
-                    CType = list
-                    list_type = campuseventsfrontend_event
+                    CType = campuseventsfrontend_eventlist
+                }
+            }
+            event_show {
+                iconIdentifier = campus_events_frontend-plugin-event
+                title = LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:plugin.event_detail.title
+                description = LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:plugin.event_detail.description
+                tt_content_defValues {
+                    CType = campuseventsfrontend_eventshow
                 }
             }
         }
