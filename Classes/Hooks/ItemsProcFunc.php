@@ -17,14 +17,12 @@ namespace BrainAppeal\CampusEventsFrontend\Hooks;
 use BrainAppeal\CampusEventsFrontend\Utility\TemplateLayout;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Utility\StringUtility;
 
 /**
  * Userfunc to render alternative label for media elements
  */
 class ItemsProcFunc
 {
-
     /** @var TemplateLayout $templateLayoutsUtility */
     protected $templateLayoutsUtility;
 
@@ -49,12 +47,12 @@ class ItemsProcFunc
             $templateLayouts = $this->reduceTemplateLayouts($templateLayouts, $currentColPos);
             foreach ($templateLayouts as $layout) {
                 $label = $layout['label'];
-                if (strpos($layout['label'], 'LLL') === 0) {
+                if (str_starts_with($layout['label'], 'LLL')) {
                     $label = $this->getLanguageService()->sL($label);
                 }
                 $additionalLayout = [
                     'label' => htmlspecialchars($label),
-                    'value' => $layout['value']
+                    'value' => $layout['value'],
                 ];
                 $config['items'][] = $additionalLayout;
             }
@@ -75,7 +73,7 @@ class ItemsProcFunc
         $allLayouts = [];
         foreach ($templateLayouts as $key => $layout) {
             if (isset($layout['allowedColPos']) && $this->endsWith($layout['value'], '.')) {
-                $layoutKey = substr((string) $layout['value'], 0, -1);
+                $layoutKey = substr((string)$layout['value'], 0, -1);
                 $restrictions[$layoutKey] = GeneralUtility::intExplode(',', $layout['allowedColPos'], true);
             } else {
                 $allLayouts[$key] = $layout;

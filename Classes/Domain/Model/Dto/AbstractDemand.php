@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace BrainAppeal\CampusEventsFrontend\Domain\Model\Dto;
 
-use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
-
 /**
  * Search Demand object which holds all information to get the correct records.
  */
