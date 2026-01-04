@@ -96,6 +96,24 @@
 			<trans-unit id="flexforms_general.select_event">
 				<source>Select event</source>
 			</trans-unit>
+			<trans-unit id="flexforms_general.orderBy">
+				<source>Sort by</source>
+			</trans-unit>
+			<trans-unit id="flexforms_general.orderBy.start_tstamp">
+				<source>Start date</source>
+			</trans-unit>
+			<trans-unit id="flexforms_general.orderBy.end_tstamp">
+				<source>End date</source>
+			</trans-unit>
+			<trans-unit id="flexforms_general.orderDirection">
+				<source>Sort direction</source>
+			</trans-unit>
+			<trans-unit id="flexforms_general.orderDirection.asc">
+				<source>Ascending</source>
+			</trans-unit>
+			<trans-unit id="flexforms_general.orderDirection.desc">
+				<source>Descending</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

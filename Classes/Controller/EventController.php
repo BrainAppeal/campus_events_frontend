@@ -17,8 +17,8 @@ namespace BrainAppeal\CampusEventsFrontend\Controller;
 use BrainAppeal\CampusEventsConnector\Domain\Model\Event;
 use BrainAppeal\CampusEventsFrontend\Domain\Model\Dto\EventDemand;
 use Psr\Http\Message\ResponseInterface;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Cache\CacheTag;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
@@ -91,7 +91,10 @@ class EventController extends ActionController
         $demand->setCurrentLanguageId($languageId);
         $pidList = $this->settings['startingpoint'] ?? null;
         $constraints = $this->createListConstraintsBasedOnSettings($demand);
-        $events = $this->eventRepository->findListByPid($pidList, $constraints);
+        $orderByField = ($this->settings['orderBy'] ?? null) === 'end_tstamp' ? 'endTstamp' : 'startTstamp';
+        $orderByDirection = ($this->settings['orderDirection'] ?? null) === 'desc' ? 'DESC' : 'ASC';
+        $orderBy = [$orderByField => $orderByDirection];
+        $events = $this->eventRepository->findListByPid($pidList, $constraints, $demand->getLimit(), $orderBy);
         $assignedValues = [
             'events' => $events,
             'contentData' => $cObj->data,

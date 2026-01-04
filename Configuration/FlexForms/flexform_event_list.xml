@@ -30,6 +30,50 @@
                     <minitems>1</minitems>
                 </config>
             </settings.startingpoint>
+            <!-- order -->
+            <settings.orderBy>
+                <label>LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy</label>
+                <config>
+                    <type>select</type>
+                    <renderType>selectSingle</renderType>
+                    <items>
+                        <numIndex index="0">
+                            <label/>
+                            <value/>
+                        </numIndex>
+                        <numIndex index="1">
+                            <label>LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy.start_tstamp</label>
+                            <value>start_tstamp</value>
+                        </numIndex>
+                        <numIndex index="2">
+                            <label>LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderBy.end_tstamp</label>
+                            <value>end_tstamp</value>
+                        </numIndex>
+                    </items>
+                </config>
+            </settings.orderBy>
+            <!-- order direction  -->
+            <settings.orderDirection>
+                <label>LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderDirection</label>
+                <config>
+                    <type>select</type>
+                    <renderType>selectSingle</renderType>
+                    <items>
+                        <numIndex index="0">
+                            <label/>
+                            <value/>
+                        </numIndex>
+                        <numIndex index="1">
+                            <label>LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderDirection.asc</label>
+                            <value>asc</value>
+                        </numIndex>
+                        <numIndex index="2">
+                            <label>LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.orderDirection.desc</label>
+                            <value>desc</value>
+                        </numIndex>
+                    </items>
+                </config>
+            </settings.orderDirection>
 
             <!-- Limit Start -->
             <settings.limit>
