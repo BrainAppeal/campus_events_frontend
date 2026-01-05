@@ -216,7 +216,7 @@ class EventController extends ActionController
         return $this->htmlResponse();
     }
 
-    protected function getErrorFlashMessage()
+    protected function getErrorFlashMessage(): bool|string
     {
         return false;
     }
