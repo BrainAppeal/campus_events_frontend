@@ -16,13 +16,13 @@
     </f:if>
 
     <f:format.html>{event.description}</f:format.html>
-    <f:if condition="{event.eventImages} && {event.eventImages.0.imageFile}">
-        <f:image image="{event.eventImages.0.imageFile}" width="200"/>
-    </f:if>
+        <f:render partial="Event/MainEventImage" arguments="{event: event, settings: settings}" />
+    <f:if condition="{settings.listPid}">
     <p class="row-item-back">
-        <f:link.action action="list" additionalAttributes="{'onclick': 'window.history.go(-1); return false;'}">
+        <f:link.page pageUid="{settings.listPid}">
             <f:translate key="backToList"/>
-        </f:link.action>
+        </f:link.page>
     </p>
+    </f:if>
 </f:section>
 </html>

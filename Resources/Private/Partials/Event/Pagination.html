@@ -1,0 +1,77 @@
+<f:if condition="{pagination.allPageNumbers -> f:count()} > 1">
+    <f:variable name="extensionName" value="campus_events_frontend" />
+    <f:variable name="navTitle" value="{f:translate(key:'pagination_title_events', extensionName: extensionName)}" />
+    <f:variable name="pageLabel" value="{f:translate(key:'widget.pagination.page', extensionName: extensionName)}"/>
+    <nav title="{navTitle}">
+        <ul class="list-unstyled pagination pagination-centered">
+            <f:if condition="{pagination.previousPageNumber} && {pagination.previousPageNumber} >= {pagination.firstPageNumber}">
+                <f:then>
+                    <li class="previous page-item">
+                        <a href="{f:uri.action(action:actionName, arguments:{currentPage: pagination.previousPageNumber, overwriteDemand: overwriteDemand}, addQueryString:'untrusted', pageType: 0)}" title="{f:translate(key:'widget.pagination.previous', extensionName: extensionName)}" class="page-link">
+                            &lt;
+                        </a>
+                    </li>
+                </f:then>
+                <f:else>
+                    <li class="previous page-item disabled"><span class="page-link">&lt;</span></li>
+                </f:else>
+            </f:if>
+
+            <f:if condition="{pagination.displayRangeStart} > 1">
+                <li class="page-item first">
+                    <a href="{f:uri.action(action:actionName, arguments:{currentPage: 1, overwriteDemand: overwriteDemand}, addQueryString:'untrusted', pageType: 0)}" aria-label="{f:translate(key:'widget.pagination.first', extensionName: extensionName)}" class="page-link">
+                        <span class="visually-hidden">{pageLabel} </span>1
+                    </a>
+                </li>
+            </f:if>
+
+            <f:if condition="{pagination.hasLessPages}">
+                <li class="page-item">…</li>
+            </f:if>
+
+            <f:variable name="lastDisplayPage" value="0"/>
+
+            <f:for each="{pagination.allPageNumbers}" as="page">
+                <f:variable name="lastDisplayPage" value="{page}"/>
+                <f:variable name="itemClass" value="page-item"/>
+                <f:if condition="{page} == {paginator.currentPageNumber}">
+                    <f:then>
+                        <li class="{itemClass} active"><span class="page-link"><span class="visually-hidden">{f:translate(key:'widget.pagination.current', extensionName: extensionName)} </span>{page}</span></li>
+                    </f:then>
+                    <f:else>
+                        <li class="{itemClass}">
+                            <a href="{f:uri.action(action:actionName, arguments:{currentPage: page, overwriteDemand: overwriteDemand}, addQueryString:'untrusted', pageType: 0)}" class="page-link">
+                                <span class="visually-hidden">{pageLabel} </span>{page}
+                            </a>
+                        </li>
+                    </f:else>
+                </f:if>
+            </f:for>
+
+            <f:if condition="{pagination.hasMorePages}">
+                <li class="page-item">…</li>
+            </f:if>
+
+            <f:if condition="{pagination.nextPageNumber} && {pagination.nextPageNumber} <= {pagination.lastPageNumber}">
+                <f:then>
+                    <f:if condition="{lastDisplayPage} < {pagination.lastPageNumber}">
+                        <li class="page-item last">
+                            <a href="{f:uri.action(action:actionName, arguments:{currentPage: pagination.lastPageNumber, overwriteDemand: overwriteDemand}, addQueryString:'untrusted', pageType: 0)}" class="page-link" aria-label="{f:translate(key:'widget.pagination.last', extensionName: extensionName)}">
+                                <span class="visually-hidden">{pageLabel} </span>{pagination.lastPageNumber}
+                            </a>
+                        </li>
+                    </f:if>
+
+                    <li class="page-item next">
+                        <a href="{f:uri.action(action:actionName, arguments:{currentPage: pagination.nextPageNumber, overwriteDemand: overwriteDemand}, addQueryString:'untrusted', pageType: 0)}" class="page-link" title="{f:translate(key:'widget.pagination.next', extensionName: extensionName)}">
+                            &gt;
+                        </a>
+                    </li>
+                </f:then>
+                <f:else>
+                    <li class="page-item next disabled"><span class="page-link">&gt;</span></li>
+                </f:else>
+            </f:if>
+        </ul>
+    </nav>
+</f:if>

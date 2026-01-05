@@ -231,6 +231,19 @@
                     </suggestOptions>
                 </config>
             </settings.detailPid>
+            <settings.hidePagination>
+                <label>LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.hidePagination</label>
+                <config>
+                    <type>check</type>
+                </config>
+            </settings.hidePagination>
+            <settings.list.paginate.itemsPerPage>
+                <label>LLL:EXT:campus_events_frontend/Resources/Private/Language/locallang_be.xlf:flexforms_general.itemsPerPage</label>
+                <config>
+                    <type>input</type>
+                    <size>2</size>
+                </config>
+            </settings.list.paginate.itemsPerPage>
         </el>
     </ROOT>
 </T3DataStructure>

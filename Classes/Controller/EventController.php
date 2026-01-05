@@ -16,10 +16,14 @@ namespace BrainAppeal\CampusEventsFrontend\Controller;
 
 use BrainAppeal\CampusEventsConnector\Domain\Model\Event;
 use BrainAppeal\CampusEventsFrontend\Domain\Model\Dto\EventDemand;
+use BrainAppeal\CampusEventsFrontend\Pagination\NumberedPagination;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Cache\CacheTag;
+use TYPO3\CMS\Core\Pagination\ArrayPaginator;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
@@ -95,6 +99,7 @@ class EventController extends ActionController
         $orderByDirection = ($this->settings['orderDirection'] ?? null) === 'desc' ? 'DESC' : 'ASC';
         $orderBy = [$orderByField => $orderByDirection];
         $events = $this->eventRepository->findListByPid($pidList, $constraints, $demand->getLimit(), $orderBy);
+        $this->addPaginationViewParams($events);
         $assignedValues = [
             'events' => $events,
             'contentData' => $cObj->data,
@@ -192,6 +197,37 @@ class EventController extends ActionController
     }
 
     /**
+     * Adds pagination parameters to the view for rendering paginated content.
+     *
+     * @param QueryResultInterface|array $objects The objects to be paginated. Can be a query result or an array of items.
+     */
+    protected function addPaginationViewParams(QueryResultInterface|array $objects): void
+    {
+        if ((bool)($this->settings['hidePagination'] ?? false)) {
+            return;
+        }
+        $paginationConfiguration = $this->settings['list']['paginate'] ?? [];
+        $itemsPerPage = (int)(($paginationConfiguration['itemsPerPage'] ?? '') ?: 100);
+        $maximumNumberOfLinks = (int)($paginationConfiguration['maximumNumberOfLinks'] ?? 0);
+        $currentPage = max(1, $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1);
+        if ($objects instanceof QueryResultInterface) {
+            $paginator = new QueryResultPaginator($objects, $currentPage, $itemsPerPage);
+        } else {
+            $paginator = new ArrayPaginator($objects, $currentPage, $itemsPerPage);
+        }
+
+        /** @var NumberedPagination $pagination */
+        $pagination = GeneralUtility::makeInstance(NumberedPagination::class, $paginator, $maximumNumberOfLinks);
+
+        $this->view->assignMultiple([
+            'pagination' => [
+                'pagination' => $pagination,
+                'paginator' => $paginator,
+            ],
+        ]);
+    }
+
+    /**
      * action show
      *
      *
@@ -216,7 +252,7 @@ class EventController extends ActionController
         return $this->htmlResponse();
     }
 
-    protected function getErrorFlashMessage()
+    protected function getErrorFlashMessage(): bool|string
     {
         return false;
     }

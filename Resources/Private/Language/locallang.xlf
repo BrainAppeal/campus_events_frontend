@@ -18,6 +18,27 @@
 			<trans-unit id="canceled_and_postponed">
 				<source>Postponed</source>
 			</trans-unit>
+			<trans-unit id="pagination_title_events">
+				<source>Event pagination navigation</source>
+			</trans-unit>
+			<trans-unit id="widget.pagination.page">
+				<source>page</source>
+			</trans-unit>
+			<trans-unit id="widget.pagination.previous">
+				<source>previous page</source>
+			</trans-unit>
+			<trans-unit id="widget.pagination.next">
+				<source>next page</source>
+			</trans-unit>
+			<trans-unit id="widget.pagination.current">
+				<source>current page</source>
+			</trans-unit>
+			<trans-unit id="widget.pagination.first">
+				<source>first page</source>
+			</trans-unit>
+			<trans-unit id="widget.pagination.last">
+				<source>last page</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

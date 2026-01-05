@@ -114,6 +114,12 @@
             <trans-unit id="flexforms_general.orderDirection.desc">
                 <target>absteigend</target>
             </trans-unit>
+            <trans-unit id="flexforms_general.hidePagination">
+                <target>Paginierung ausblenden</target>
+            </trans-unit>
+            <trans-unit id="flexforms_general.itemsPerPage">
+                <target>Einträge pro Seite</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

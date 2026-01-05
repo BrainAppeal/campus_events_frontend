@@ -13,11 +13,23 @@
 		</div>
 	</f:if>
 	<f:if condition="{events}">
-		<div class="item-list event-item-list">
-			<f:for each="{events}" as="event">
-				<f:render partial="Event/Item" arguments="{event: event, settings: settings}" />
-			</f:for>
-		</div>
+	<!--TYPO3SEARCH_end-->
+	<div class="item-list event-item-list">
+		<f:if condition="{settings.hidePagination}">
+			<f:then>
+				<f:for each="{events}" as="event">
+					<f:render partial="Event/Item" arguments="{event: event, settings: settings}" />
+				</f:for>
+			</f:then>
+			<f:else>
+				<f:for each="{pagination.paginator.paginatedItems}" as="event" iteration="iterator">
+					<f:render partial="Event/Item" arguments="{event: event, settings: settings}" />
+				</f:for>
+				<f:render partial="Event/Pagination" arguments="{pagination: pagination.pagination, paginator: pagination.paginator}" />
+			</f:else>
+		</f:if>
+	</div>
+	<!--TYPO3SEARCH_begin-->
 	</f:if>
 	<f:if condition="{settings.externalListUrl}">
 		<div class="wrap-show-all below">

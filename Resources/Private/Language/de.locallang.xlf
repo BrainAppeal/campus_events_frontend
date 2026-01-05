@@ -18,6 +18,27 @@
 			<trans-unit id="canceled_and_postponed">
 				<target>Verschoben</target>
 			</trans-unit>
+			<trans-unit id="pagination_title_events">
+				<target>Paginierungsnavigation für Veranstaltungen</target>
+			</trans-unit>
+			<trans-unit id="widget.pagination.page">
+				<target>Seite</target>
+			</trans-unit>
+			<trans-unit id="widget.pagination.previous">
+				<target>Vorherige Seite</target>
+			</trans-unit>
+			<trans-unit id="widget.pagination.next">
+				<target>Nächste Seite</target>
+			</trans-unit>
+			<trans-unit id="widget.pagination.current">
+				<target>Aktuelle Seite</target>
+			</trans-unit>
+			<trans-unit id="widget.pagination.first">
+				<target>Erste Seite</target>
+			</trans-unit>
+			<trans-unit id="widget.pagination.last">
+				<target>Letzte Seite</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
