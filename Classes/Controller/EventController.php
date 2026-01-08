@@ -90,7 +90,6 @@ class EventController extends ActionController
 
         /** @var ContentObjectRenderer $cObj */
         $cObj = $this->request->getAttribute('currentContentObject');
-
         $languageId = (int)$this->request->getAttribute('language')?->getLanguageId();
         $demand->setCurrentLanguageId($languageId);
         $pidList = $this->settings['startingpoint'] ?? null;
@@ -203,11 +202,11 @@ class EventController extends ActionController
      */
     protected function addPaginationViewParams(QueryResultInterface|array $objects): void
     {
-        if ((bool)($this->settings['hidePagination'] ?? false)) {
+        if ($this->settings['hidePagination'] ?? false) {
             return;
         }
         $paginationConfiguration = $this->settings['list']['paginate'] ?? [];
-        $itemsPerPage = (int)(($paginationConfiguration['itemsPerPage'] ?? '') ?: 100);
+        $itemsPerPage = (int)max(1, (($paginationConfiguration['itemsPerPage'] ?? '') ?: 100));
         $maximumNumberOfLinks = (int)($paginationConfiguration['maximumNumberOfLinks'] ?? 0);
         $currentPage = max(1, $this->request->hasArgument('currentPage') ? (int)$this->request->getArgument('currentPage') : 1);
         if ($objects instanceof QueryResultInterface) {

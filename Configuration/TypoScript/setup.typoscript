@@ -27,7 +27,6 @@ plugin.tx_campuseventsfrontend {
 		list {
 			# Paginate configuration.
 			paginate {
-				itemsPerPage = {$plugin.tx_campuseventsfrontend_event.settings.list.paginate.itemsPerPage}
 				insertAbove = 0
 				insertBelow = 1
 				lessPages = {$plugin.tx_campuseventsfrontend_event.settings.list.paginate.lessPages}

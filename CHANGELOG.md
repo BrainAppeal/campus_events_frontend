@@ -1,14 +1,6 @@
 # CHANGELOG.md
 
-## 5.0.2 (2026-01-05)
-
-### Fixed
-- Return value of getErrorFlashMessage for TYPO3 13.4
-
-### Added:
-- Pagination for list view
-
-## 5.0.1 (2026-01-04)
+## 5.0.1 (2025-03-26)
 
 ### Added:
 - Allow filter categories to be used as include and exclude filter.
