@@ -14,17 +14,14 @@ use TYPO3\CMS\Core\Pagination\PaginatorInterface;
  */
 final class NumberedPagination implements PaginationInterface
 {
-    protected PaginatorInterface $paginator;
-
     protected int $maximumNumberOfLinks = 10;
     protected int $displayRangeStart = 0;
     protected int $displayRangeEnd = 0;
     protected bool $hasLessPages = false;
     protected bool $hasMorePages = false;
 
-    public function __construct(PaginatorInterface $paginator, int $maximumNumberOfLinks = 0)
+    public function __construct(protected PaginatorInterface $paginator, int $maximumNumberOfLinks = 0)
     {
-        $this->paginator = $paginator;
         if ($maximumNumberOfLinks > 0) {
             $this->maximumNumberOfLinks = $maximumNumberOfLinks;
         }

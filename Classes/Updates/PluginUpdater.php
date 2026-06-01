@@ -1,26 +1,27 @@
 <?php
+
 /**
  * campus_events_frontend comes with ABSOLUTELY NO WARRANTY
  * See the GNU GeneralPublic License for more details.
  * https://www.gnu.org/licenses/gpl-2.0
  *
- * Copyright (C) 2023 Brain Appeal GmbH
+ * Copyright (C) 2026 Brain Appeal GmbH
  *
  * @copyright 2023 Brain Appeal GmbH (www.brain-appeal.com)
  * @license   GPL-2 (www.gnu.org/licenses/gpl-2.0)
  * @link      https://www.campus-events.com/
  */
 
-
 namespace BrainAppeal\CampusEventsFrontend\Updates;
 
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Service\FlexFormService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Install\Updates\DatabaseUpdatedPrerequisite;
 use TYPO3\CMS\Install\Attribute\UpgradeWizard;
+use TYPO3\CMS\Install\Updates\DatabaseUpdatedPrerequisite;
 use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
 
 #[UpgradeWizard('txCampusEventsFrontendPluginUpdater')]
@@ -41,7 +42,7 @@ class PluginUpdater implements UpgradeWizardInterface
     /** @var FlexFormService */
     protected $flexFormService;
 
-    public function __construct()
+    public function __construct(private readonly ConnectionPool $connectionPool)
     {
         $this->flexFormService = GeneralUtility::makeInstance(FlexFormService::class);
     }
@@ -111,11 +112,7 @@ class PluginUpdater implements UpgradeWizardInterface
                 }
             }
 
-            if (count($flexFormData['data']) > 0) {
-                $newFlexform = $this->array2xml($flexFormData);
-            } else {
-                $newFlexform = '';
-            }
+            $newFlexform = count($flexFormData['data']) > 0 ? $this->array2xml($flexFormData) : '';
 
             $this->updateContentElement($record['uid'], $targetCType, $newFlexform);
         }
@@ -125,10 +122,12 @@ class PluginUpdater implements UpgradeWizardInterface
 
     protected function getMigrationRecords(): array
     {
-        $connectionPool = GeneralUtility::makeInstance(ConnectionPool::class);
+        if ((new Typo3Version())->getMajorVersion() >= 14) {
+            return [];
+        }
+        $connectionPool = $this->connectionPool;
         $queryBuilder = $connectionPool->getQueryBuilderForTable('tt_content');
         $queryBuilder->getRestrictions()->removeAll()->add(GeneralUtility::makeInstance(DeletedRestriction::class));
-
         return $queryBuilder
             ->select('uid', 'list_type', 'pi_flexform')
             ->from('tt_content')
@@ -194,7 +193,7 @@ class PluginUpdater implements UpgradeWizardInterface
      */
     protected function updateContentElement(int $uid, string $newCType, string $flexform): void
     {
-        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tt_content');
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable('tt_content');
         $queryBuilder->update('tt_content')
             ->set('CType', $newCType)
             ->set('list_type', '')

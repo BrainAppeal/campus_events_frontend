@@ -1,0 +1,83 @@
+categories:
+  campusEventsFrontend:
+    label: 'Campus Events Frontend'
+  campusEventsFrontend.templates:
+    label: 'Templates'
+    parent: campusEventsFrontend
+  campusEventsFrontend.persistence:
+    label: 'Persistence'
+    parent: campusEventsFrontend
+  campusEventsFrontend.list:
+    label: 'Event list'
+    parent: campusEventsFrontend
+  campusEventsFrontend.list.pagination:
+    label: 'Pagination'
+    parent: campusEventsFrontend.list
+
+settings:
+  plugin.tx_campuseventsfrontend_event.view.templateRootPath:
+    label: 'Template root path'
+    category: campusEventsFrontend.templates
+    description: 'Path to the frontend templates.'
+    type: string
+    default: 'EXT:campus_events_frontend/Resources/Private/Templates/'
+  plugin.tx_campuseventsfrontend_event.view.partialRootPath:
+    label: 'Partial root path'
+    category: campusEventsFrontend.templates
+    description: 'Path to the frontend partials.'
+    type: string
+    default: 'EXT:campus_events_frontend/Resources/Private/Partials/'
+  plugin.tx_campuseventsfrontend_event.view.layoutRootPath:
+    label: 'Layout root path'
+    category: campusEventsFrontend.templates
+    description: 'Path to the frontend layouts.'
+    type: string
+    default: 'EXT:campus_events_frontend/Resources/Private/Layouts/'
+  plugin.tx_campuseventsfrontend_event.persistence.storagePid:
+    label: 'Storage PID'
+    category: campusEventsFrontend.persistence
+    description: 'Default storage PID for event records. Leave empty to use the current fallback behavior.'
+    type: string
+    default: ''
+  plugin.tx_campuseventsfrontend_event.settings.list.paginate.insertAbove:
+    label: 'Render pagination above list'
+    category: campusEventsFrontend.list.pagination
+    description: 'Render the pagination controls above the event list.'
+    type: bool
+    default: false
+  plugin.tx_campuseventsfrontend_event.settings.list.paginate.insertBelow:
+    label: 'Render pagination below list'
+    category: campusEventsFrontend.list.pagination
+    description: 'Render the pagination controls below the event list.'
+    type: bool
+    default: true
+  plugin.tx_campuseventsfrontend_event.settings.list.paginate.lessPages:
+    label: 'Less pages'
+    category: campusEventsFrontend.list.pagination
+    description: 'Number of pages to collapse on the lower side of the pagination.'
+    type: int
+    default: 1
+  plugin.tx_campuseventsfrontend_event.settings.list.paginate.morePages:
+    label: 'More pages'
+    category: campusEventsFrontend.list.pagination
+    description: 'Number of pages to collapse on the upper side of the pagination.'
+    type: int
+    default: 1
+  plugin.tx_campuseventsfrontend_event.settings.list.paginate.maximumNumberOfLinks:
+    label: 'Maximum number of links'
+    category: campusEventsFrontend.list.pagination
+    description: 'Maximum number of pagination links to render.'
+    type: int
+    default: 10
+  plugin.tx_campuseventsfrontend_event.settings.list.paginate.pagesBefore:
+    label: 'Pages before current page'
+    category: campusEventsFrontend.list.pagination
+    description: 'How many pages to show before the current page.'
+    type: int
+    default: 3
+  plugin.tx_campuseventsfrontend_event.settings.list.paginate.pagesAfter:
+    label: 'Pages after current page'
+    category: campusEventsFrontend.list.pagination
+    description: 'How many pages to show after the current page.'
+    type: int
+    default: 3

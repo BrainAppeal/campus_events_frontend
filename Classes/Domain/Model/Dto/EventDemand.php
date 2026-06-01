@@ -28,7 +28,7 @@ class EventDemand extends AbstractDemand
 
     public function setViewLists(?array $viewLists): void
     {
-        $this->viewLists = array_map('intval', $viewLists);
+        $this->viewLists = array_map(intval(...), $viewLists);
     }
 
     public function getExcludeFilterCategories(): ?array

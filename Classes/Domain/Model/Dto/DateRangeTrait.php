@@ -6,7 +6,6 @@ namespace BrainAppeal\CampusEventsFrontend\Domain\Model\Dto;
 
 trait DateRangeTrait
 {
-
     /**
      * Minimum date
      *

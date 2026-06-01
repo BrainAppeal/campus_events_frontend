@@ -9,7 +9,6 @@ namespace BrainAppeal\CampusEventsFrontend\Domain\Model\Dto;
  */
 trait StoragePageTrait
 {
-
     /** @var string */
     protected $storagePage = '';
 

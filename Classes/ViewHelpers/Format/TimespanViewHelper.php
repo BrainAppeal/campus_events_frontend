@@ -1,10 +1,11 @@
 <?php
+
 /**
  * campus_events_frontend comes with ABSOLUTELY NO WARRANTY
  * See the GNU GeneralPublic License for more details.
  * https://www.gnu.org/licenses/gpl-2.0
  *
- * Copyright (C) 2019 Brain Appeal GmbH
+ * Copyright (C) 2026 Brain Appeal GmbH
  *
  * @copyright 2019 Brain Appeal GmbH (www.brain-appeal.com)
  * @license   GPL-2 (www.gnu.org/licenses/gpl-2.0)
@@ -13,19 +14,18 @@
 
 namespace BrainAppeal\CampusEventsFrontend\ViewHelpers\Format;
 
+use BrainAppeal\CampusEventsConnector\Domain\Model\TimeRange;
 use DateTime;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
-use BrainAppeal\CampusEventsConnector\Domain\Model\TimeRange;
 
 /**
  * Format a given time span with IntlDateFormatter
  *
- * @package campus_event
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
 class TimespanViewHelper extends AbstractViewHelper
 {
-    public function initializeArguments()
+    public function initializeArguments(): void
     {
         parent::initializeArguments();
 
@@ -46,9 +46,9 @@ class TimespanViewHelper extends AbstractViewHelper
     {
         $timeRange = $this->arguments['timeRange'];
         $format = $this->arguments['format'];
-        $showDate = (bool) $this->arguments['showDate'];
-        $showTime = (bool) $this->arguments['showTime'];
-        $skipTimeIfMidnightOnSameDate = $showTime && (bool) $this->arguments['skipTimeIfMidnightOnSameDate'];
+        $showDate = (bool)$this->arguments['showDate'];
+        $showTime = (bool)$this->arguments['showTime'];
+        $skipTimeIfMidnightOnSameDate = $showTime && (bool)$this->arguments['skipTimeIfMidnightOnSameDate'];
 
         $start = $this->getDateTimeObj($timeRange->getStartDate());
         $end = $this->getDateTimeObj($timeRange->getEndDate());
@@ -78,14 +78,12 @@ class TimespanViewHelper extends AbstractViewHelper
                 } else {
                     $formattedTimeRange = $startDay . ', ' . $startTime;
                 }
+            } elseif ($endTime !== $startTime) {
+                $formattedTimeRange = $startTime . ' &ndash; ' . $endTime;
+            } elseif ($skipTimeIfMidnightOnSameDate) {
+                $formattedTimeRange = '';
             } else {
-                if ($endTime !== $startTime) {
-                    $formattedTimeRange = $startTime . ' &ndash; ' . $endTime;
-                } elseif ($skipTimeIfMidnightOnSameDate) {
-                    $formattedTimeRange = '';
-                } else {
-                    $formattedTimeRange = $startTime;
-                }
+                $formattedTimeRange = $startTime;
             }
         } elseif ($showDate) {
             $formattedTimeRange = $startDay !== $endDay ? $startDay . ' &ndash; ' . $endDay : $startDay;
@@ -96,11 +94,11 @@ class TimespanViewHelper extends AbstractViewHelper
 
     /**
      * Format the given date
-     * @param DateTime $date The date and time object
+     * @param \DateTime $date The date and time object
      * @param string $pattern Pattern for IntlDateFormatter
      * @return bool|string
      */
-    private function format(DateTime $date, string $pattern)
+    private function format(\DateTime $date, string $pattern)
     {
         $fmt = new \IntlDateFormatter(
             'de-DE',
@@ -116,22 +114,18 @@ class TimespanViewHelper extends AbstractViewHelper
     /**
      * Create a datetime object from the given parameter (that may be a string or already a DateTime object)
      *
-     * @param string|DateTime $date
-     * @return DateTime
+     * @param string|\DateTime $date
+     * @return \DateTime
      * @throws \Exception
      */
-    private function getDateTimeObj($date): DateTime
+    private function getDateTimeObj($date): \DateTime
     {
-        if (!$date instanceof DateTime) {
+        if (!$date instanceof \DateTime) {
             try {
-                if (is_numeric($date)) {
-                    $date = new DateTime('@' . $date);
-                } else {
-                    $date = new DateTime($date);
-                }
+                $date = is_numeric($date) ? new \DateTime('@' . $date) : new \DateTime($date);
                 $date->setTimezone(new \DateTimeZone($this->getTimezoneString()));
             } catch (\Exception $e) {
-                throw new \Exception(sprintf('"' . $date . '" could not be parsed by DateTime constructor: %s.', $e->getMessage()), 1241722579);
+                throw new \Exception(sprintf('"' . $date . '" could not be parsed by DateTime constructor: %s.', $e->getMessage()), 1241722579, $e);
             }
         }
         return $date;
@@ -144,7 +138,7 @@ class TimespanViewHelper extends AbstractViewHelper
     private function getTimezoneString(): string
     {
         $timeZone = date_default_timezone_get();
-        if (empty($timeZone) || strtolower($timeZone) === 'utc') {
+        if ($timeZone === '' || strtolower($timeZone) === 'utc') {
             $timeZone = 'Europe/Berlin';
         }
         return $timeZone;

@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * campus_events_frontend comes with ABSOLUTELY NO WARRANTY
  * See the GNU GeneralPublic License for more details.
  * https://www.gnu.org/licenses/gpl-2.0
  *
- * Copyright (C) 2019 Brain Appeal GmbH
+ * Copyright (C) 2026 Brain Appeal GmbH
  *
  * @copyright 2019 Brain Appeal GmbH (www.brain-appeal.com)
  * @license   GPL-2 (www.gnu.org/licenses/gpl-2.0)
@@ -15,38 +17,30 @@
 namespace BrainAppeal\CampusEventsFrontend\Controller;
 
 use BrainAppeal\CampusEventsConnector\Domain\Model\Event;
+use BrainAppeal\CampusEventsConnector\Domain\Repository\EventRepository;
 use BrainAppeal\CampusEventsFrontend\Domain\Model\Dto\EventDemand;
 use BrainAppeal\CampusEventsFrontend\Pagination\NumberedPagination;
 use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Cache\CacheDataCollector;
 use TYPO3\CMS\Core\Cache\CacheTag;
+use TYPO3\CMS\Core\Http\ImmediateResponseException;
 use TYPO3\CMS\Core\Pagination\ArrayPaginator;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
+use TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
-use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
+use TYPO3\CMS\Frontend\Controller\ErrorController;
 
 /**
  * EventController
  */
 class EventController extends ActionController
 {
-    /**
-     * event repository
-     *
-     * @var \BrainAppeal\CampusEventsConnector\Domain\Repository\EventRepository
-     */
-    protected $eventRepository;
 
-    /**
-     * Inject a event repository to enable DI
-     *
-     * @param \BrainAppeal\CampusEventsConnector\Domain\Repository\EventRepository $eventRepository
-     */
-    public function injectEventRepository(\BrainAppeal\CampusEventsConnector\Domain\Repository\EventRepository $eventRepository)
+    public function __construct(protected EventRepository $eventRepository)
     {
-        $this->eventRepository = $eventRepository;
     }
 
     /**
@@ -54,7 +48,7 @@ class EventController extends ActionController
      *
      * @var bool
      */
-    private static $cacheTagsSet = false;
+    private static bool $cacheTagsSet = false;
 
     /**
      * Initializes the current action
@@ -63,17 +57,9 @@ class EventController extends ActionController
     {
         if (!self::$cacheTagsSet) {
             $cacheDataCollector = $this->request->getAttribute('frontend.cache.collector');
-            // TYPO3 >= 13
-            if ($cacheDataCollector && class_exists(CacheTag::class)) {
-                $cacheDataCollector->addCacheTags(...array_map(fn(string $tag) => new CacheTag($tag), ['tx_campus_events']));
-                self::$cacheTagsSet = true;
-                // TYPO3 12
-            } elseif (($GLOBALS['TSFE'] ?? null) instanceof TypoScriptFrontendController) {
-                /** @var TypoScriptFrontendController $typoScriptFrontendController  */
-                $typoScriptFrontendController = $GLOBALS['TSFE'];
-                $typoScriptFrontendController->addCacheTags(['tx_campus_events']);
-                self::$cacheTagsSet = true;
-            }
+            /** @var CacheDataCollector $cacheDataCollector */
+            $cacheDataCollector->addCacheTags(...array_map(fn(string $tag) => new CacheTag($tag), ['tx_campus_events']));
+            self::$cacheTagsSet = true;
         }
     }
 
@@ -81,7 +67,7 @@ class EventController extends ActionController
      * action list
      *
      * @return ResponseInterface
-     * @throws \TYPO3\CMS\Extbase\Persistence\Exception\InvalidQueryException
+     * @throws InvalidQueryException
      */
     public function listAction(): ResponseInterface
     {
@@ -123,7 +109,7 @@ class EventController extends ActionController
         }
         $search->setExcludeFilterCategories($excludeFilterCategories);
         $viewLists = GeneralUtility::intExplode(',', (string)($this->settings['viewLists'] ?? ''), true);
-        if (!empty($viewLists)) {
+        if ($viewLists !== []) {
             $search->setViewLists(array_merge($search->getViewLists(), $viewLists));
         }
         $search->setStoragePage((string)($this->settings['storagePage'] ?? ''));
@@ -149,7 +135,7 @@ class EventController extends ActionController
         $query = $this->eventRepository->createQuery();
         $excludeFilterCategories = $demand->getExcludeFilterCategories();
         $viewListIdList = $demand->getViewLists();
-        if (!empty($excludeFilterCategories)) {
+        if ($excludeFilterCategories !== null && $excludeFilterCategories !== []) {
             if ($demand->getFilterCategoryMode() === 'include') {
                 $filterCategoryConstraints = [];
                 foreach ($excludeFilterCategories as $excludeFilterCategory) {
@@ -160,21 +146,21 @@ class EventController extends ActionController
                 $andConstraints[] = $query->logicalNot($query->contains('filterCategories', $excludeFilterCategories));
             }
         }
-        if (!empty($viewListIdList)) {
+        if ($viewListIdList !== null && $viewListIdList !== []) {
             $viewListsConstraints = [];
             foreach ($viewListIdList as $viewList) {
                 $viewListsConstraints[] = $query->contains('viewLists', $viewList);
             }
             $andConstraints[] = $query->logicalOr(...$viewListsConstraints);
         }
-        if ($minTstamp = $demand->getMinimumTstamp()) {
+        if (($minTstamp = $demand->getMinimumTstamp()) !== 0) {
             $field = 'startTstamp';
             if ($demand->getFilterTimespanDateField() === 'end_tstamp') {
                 $field = 'endTstamp';
             }
             $andConstraints[] = $query->greaterThanOrEqual($field, $minTstamp);
         }
-        if ($maxTstamp = $demand->getMaximumTstamp()) {
+        if (($maxTstamp = $demand->getMaximumTstamp()) !== 0) {
             $field = 'endTstamp';
             if ($demand->getFilterTimespanDateField() === 'start_tstamp') {
                 $field = 'startTstamp';
@@ -182,7 +168,7 @@ class EventController extends ActionController
             $andConstraints[] = $query->lessThanOrEqual($field, $maxTstamp);
         }
         $searchWords = GeneralUtility::trimExplode(' ', trim(strip_tags((string)$demand->getSearchTerm())), true);
-        if (!empty($searchWords)) {
+        if ($searchWords !== []) {
             $searchFields = ['name', 'shortDescription'];
             $subConstraints = [];
             foreach ($searchFields as $searchField) {
@@ -235,9 +221,19 @@ class EventController extends ActionController
      */
     public function showAction(?Event $event = null): ResponseInterface
     {
-        if ($event === null && ($eventId = (int)($this->settings['event'] ?? 0)) > 0) {
-            /** @noinspection CallableParameterUseCaseInTypeContextInspection */
-            $event = $this->eventRepository->findByUid($eventId);
+        if (!($event instanceof Event)) {
+            if (($eventId = (int)($this->settings['event'] ?? 0)) > 0) {
+                /** @noinspection CallableParameterUseCaseInTypeContextInspection */
+                $event = $this->eventRepository->findByUid($eventId);
+            }
+            if (!($event instanceof Event)) {
+                $message = 'No news entry found!';
+                $response = GeneralUtility::makeInstance(ErrorController::class)->pageNotFoundAction(
+                    $this->request,
+                    $message
+                );
+                throw new ImmediateResponseException($response, 1590468229);
+            }
         }
         /** @var ContentObjectRenderer $cObj */
         $cObj = $this->request->getAttribute('currentContentObject');
@@ -247,7 +243,10 @@ class EventController extends ActionController
             'settings' => $this->settings,
         ];
         $this->view->assignMultiple($assignedValues);
-        $GLOBALS['TSFE']->addCacheTags(['tx_campus_events_' . $event->getUid()]);
+        $cacheDataCollector = $this->request->getAttribute('frontend.cache.collector');
+        /** @var CacheDataCollector $cacheDataCollector */
+        $cacheTag = new CacheTag('tx_campus_events_' . $event->getUid());
+        $cacheDataCollector->addCacheTags($cacheTag);
         return $this->htmlResponse();
     }
 

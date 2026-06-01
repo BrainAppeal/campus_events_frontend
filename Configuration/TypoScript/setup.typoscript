@@ -27,8 +27,8 @@ plugin.tx_campuseventsfrontend {
 		list {
 			# Paginate configuration.
 			paginate {
-				insertAbove = 0
-				insertBelow = 1
+				insertAbove = {$plugin.tx_campuseventsfrontend_event.settings.list.paginate.insertAbove}
+				insertBelow = {$plugin.tx_campuseventsfrontend_event.settings.list.paginate.insertBelow}
 				lessPages = {$plugin.tx_campuseventsfrontend_event.settings.list.paginate.lessPages}
 				morePages = {$plugin.tx_campuseventsfrontend_event.settings.list.paginate.morePages}
 				#forcedNumberOfLinks = 5
@@ -38,15 +38,4 @@ plugin.tx_campuseventsfrontend {
 			}
 		}
 	}
-}
-
-# Keep compatibility for old list type for TYPO3 11.x
-plugin.tx_campuseventsfrontend_event =< plugin.tx_campuseventsfrontend
-tt_content.list.20.campuseventsfrontend_event = USER
-tt_content.list.20.campuseventsfrontend_event {
-	userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
-	pluginName = Event
-	vendorName = BrainAppeal
-	extensionName = CampusEventsFrontend
-	controller = Event
 }

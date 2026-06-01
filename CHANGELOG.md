@@ -1,5 +1,10 @@
 # CHANGELOG.md
 
+## 6.0.0 (2026-06-01)
+
+### Added:
+- compatibility with TYPO3 14.3 LTS
+
 ## 5.0.1 (2025-03-26)
 
 ### Added:

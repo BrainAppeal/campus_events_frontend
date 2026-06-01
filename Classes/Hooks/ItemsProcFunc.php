@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * campus_events_frontend comes with ABSOLUTELY NO WARRANTY
  * See the GNU GeneralPublic License for more details.
  * https://www.gnu.org/licenses/gpl-2.0
  *
- * Copyright (C) 2019 Brain Appeal GmbH
+ * Copyright (C) 2026 Brain Appeal GmbH
  *
  * @copyright 2019 Brain Appeal GmbH (www.brain-appeal.com)
  * @license   GPL-2 (www.gnu.org/licenses/gpl-2.0)
@@ -15,20 +17,24 @@
 namespace BrainAppeal\CampusEventsFrontend\Hooks;
 
 use BrainAppeal\CampusEventsFrontend\Utility\TemplateLayout;
+use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
+use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
+use TYPO3\CMS\Core\Localization\LanguageService;
+use TYPO3\CMS\Core\Localization\LanguageServiceFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Userfunc to render alternative label for media elements
  */
+#[Autoconfigure(public: true)]
 class ItemsProcFunc
 {
-    /** @var TemplateLayout $templateLayoutsUtility */
-    protected $templateLayoutsUtility;
-
-    public function __construct()
+    public function __construct(
+        private LanguageServiceFactory $languageServiceFactory,
+        private TemplateLayout         $templateLayoutsUtility
+    )
     {
-        $this->templateLayoutsUtility = GeneralUtility::makeInstance(TemplateLayout::class);
     }
 
     /**
@@ -36,10 +42,10 @@ class ItemsProcFunc
      *
      * @param array &$config configuration array
      */
-    public function user_templateLayout(array &$config)
+    public function user_templateLayout(array &$config): void
     {
         $currentColPos = $config['flexParentDatabaseRow']['colPos'];
-        $pageId = $this->getPageId($config['flexParentDatabaseRow']['pid']);
+        $pageId = $this->getPageId((int)($config['flexParentDatabaseRow']['pid'] ?? 0));
 
         if ($pageId > 0) {
             $templateLayouts = $this->templateLayoutsUtility->getAvailableTemplateLayouts($pageId);
@@ -47,11 +53,11 @@ class ItemsProcFunc
             $templateLayouts = $this->reduceTemplateLayouts($templateLayouts, $currentColPos);
             foreach ($templateLayouts as $layout) {
                 $label = $layout['label'];
-                if (str_starts_with($layout['label'], 'LLL')) {
+                if (str_starts_with((string)$layout['label'], 'LLL')) {
                     $label = $this->getLanguageService()->sL($label);
                 }
                 $additionalLayout = [
-                    'label' => htmlspecialchars($label),
+                    'label' => htmlspecialchars((string)$label),
                     'value' => $layout['value'],
                 ];
                 $config['items'][] = $additionalLayout;
@@ -72,14 +78,14 @@ class ItemsProcFunc
         $restrictions = [];
         $allLayouts = [];
         foreach ($templateLayouts as $key => $layout) {
-            if (isset($layout['allowedColPos']) && $this->endsWith($layout['value'], '.')) {
+            if (isset($layout['allowedColPos']) && str_ends_with($layout['value'] ?? '', '.')) {
                 $layoutKey = substr((string)$layout['value'], 0, -1);
                 $restrictions[$layoutKey] = GeneralUtility::intExplode(',', $layout['allowedColPos'], true);
             } else {
                 $allLayouts[$key] = $layout;
             }
         }
-        if (!empty($restrictions)) {
+        if ($restrictions !== []) {
             foreach ($restrictions as $restrictedIdentifier => $restrictedColPosList) {
                 if (!in_array($currentColPos, $restrictedColPosList, true)) {
                     unset($allLayouts[$restrictedIdentifier]);
@@ -91,48 +97,29 @@ class ItemsProcFunc
     }
 
     /**
-     * Check if haystack ends with needle; Can be replaced with PHP's native str_ends_with() function
-     *
-     * @param string $haystack
-     * @param string $needle
-     * @return bool
-     */
-    private function endsWith($haystack, $needle)
-    {
-        $haystackLength = strlen($haystack);
-        $needleLength = strlen($needle);
-        if (!$haystackLength || $needleLength > $haystackLength) {
-            return false;
-        }
-        $position = strrpos((string)$haystack, (string)$needle);
-        return $position !== false && $position === $haystackLength - $needleLength;
-    }
-
-    /**
      * Get page id, if negative, then it is an "after record"
      *
      * @param int $pid
      * @return int
      */
-    protected function getPageId($pid)
+    protected function getPageId(int $pid): int
     {
-        $pid = (int)$pid;
-
         if ($pid > 0) {
             return $pid;
         }
 
         $row = BackendUtilityCore::getRecord('tt_content', abs($pid), 'uid,pid');
-        return $row['pid'];
+        return (int)($row['pid'] ?? 0);
     }
 
-    /**
-     * Returns LanguageService
-     *
-     * @return \TYPO3\CMS\Core\Localization\LanguageService
-     */
-    protected function getLanguageService()
+
+    private function getLanguageService(): LanguageService
     {
-        return $GLOBALS['LANG'];
+        return $GLOBALS['LANG'] ?? $this->languageServiceFactory->createFromUserPreferences($this->getBackendUser());
+    }
+
+    private function getBackendUser(): BackendUserAuthentication
+    {
+        return $GLOBALS['BE_USER'];
     }
 }

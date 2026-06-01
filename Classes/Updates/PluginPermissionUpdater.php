@@ -5,7 +5,7 @@
  * See the GNU GeneralPublic License for more details.
  * https://www.gnu.org/licenses/gpl-2.0
  *
- * Copyright (C) 2023 Brain Appeal GmbH
+ * Copyright (C) 2026 Brain Appeal GmbH
  *
  * @copyright 2023 Brain Appeal GmbH (www.brain-appeal.com)
  * @license   GPL-2 (www.gnu.org/licenses/gpl-2.0)
@@ -17,6 +17,7 @@ namespace BrainAppeal\CampusEventsFrontend\Updates;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Install\Attribute\UpgradeWizard;
 use TYPO3\CMS\Install\Updates\DatabaseUpdatedPrerequisite;
@@ -25,6 +26,7 @@ use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
 #[UpgradeWizard('txCampusEventsFrontendPluginPermissionUpdater')]
 class PluginPermissionUpdater implements UpgradeWizardInterface
 {
+    public function __construct(private readonly ConnectionPool $connectionPool) {}
     public function getTitle(): string
     {
         return 'EXT:campus_events_frontend: Migrate plugin permissions';
@@ -72,7 +74,10 @@ class PluginPermissionUpdater implements UpgradeWizardInterface
 
     protected function getMigrationRecords(): array
     {
-        $connectionPool = GeneralUtility::makeInstance(ConnectionPool::class);
+        if ((new Typo3Version())->getMajorVersion() >= 14) {
+            return [];
+        }
+        $connectionPool = $this->connectionPool;
         $queryBuilder = $connectionPool->getQueryBuilderForTable('be_groups');
         $queryBuilder->getRestrictions()->removeAll()->add(GeneralUtility::makeInstance(DeletedRestriction::class));
 
@@ -105,7 +110,7 @@ class PluginPermissionUpdater implements UpgradeWizardInterface
         ];
 
         $newList = str_replace(array_keys($searchReplace), array_values($searchReplace), $row['explicit_allowdeny']);
-        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('be_groups');
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable('be_groups');
         $queryBuilder->update('be_groups')
             ->set('explicit_allowdeny', $newList)
             ->where(
